@@ -10,21 +10,6 @@ $result = $conn->query($sql);
 
 // Exibe os resultados
 if ($result->num_rows > 0) {
-    /*
-    echo "<br>";
-    echo "<table border=1>";
-        echo "<tr>";
-            echo "<td>Cliente</td>"; // 1
-            echo "<td>CPF/CNPJ</td>"; //2
-            echo "<td>Endereco</td>"; //3
-            echo "<td>Cidade</td>"; //4
-            echo "<td>Telefone</td>"; //5
-            echo "<td>Email</td>"; //6
-            echo "<td>Data da última compra</td>"; //7
-            echo "<td>Valor já comprado</td>"; //8
-            echo "<td>Dias desde última compra</td>"; //9
-        echo "</tr>";
-        */
     echo
     '
     <br>
@@ -33,14 +18,14 @@ if ($result->num_rows > 0) {
             <td colspan=10 style="text-align: center; font-size: 1.2rem;">Dados do cliente</td>
         </tr>
         <tr>
-            <td>Cliente</td>
+            <td>Nome</td>
             <td>CPF/CNPJ</td>
             <td>Endereço</td>
             <td>Cidade</td>
             <td>Telefone</td>
             <td>E-mail</td>
-            <td>Data da última compra</td>
-            <td>Valor já comprado<td/>
+            <td>Data última compra</td>
+            <td>Total valor já comprado</td>
             <td>Dias desde última compra</td>
         </tr>
     ';
