@@ -1,14 +1,11 @@
 <?php
 require 'sqlconnection.php';
 
-// Obtém o código enviado via GET
 $codigo = $_GET["codigo"];
 
-// Query SQL para obter os dados do banco de dados
 $sql = "SELECT * FROM cliente WHERE codigo = '$codigo'";
 $result = $conn->query($sql);
 
-// Exibe os resultados
 if ($result->num_rows > 0) {
     echo
     '
@@ -29,32 +26,40 @@ if ($result->num_rows > 0) {
             <td>Dias desde última compra</td>
         </tr>
     ';
-        while($row = $result->fetch_assoc()) {
-        echo "
-        <tr>
-            <td>" . $row["nome"] . "</td>
-            <td>" . $row["cpfCNPJ"] . "</td>
-            <td>" . $row["endereco"] . "</td>
-            <td>" . $row["cidade"] . "</td>
-            <td>" . $row["telefone"] . "</td>
-            <td>" . $row["e-mail"] . "</td>
-            <td> " . (function($row) {
+    while($row = $result->fetch_assoc()) {
+    echo "
+    <tr>
+        <td>" . (isset($row["nome"]) ? $row["nome"] : "Aparentemente este cliente não tem nome!") . "</td>
+        <td>" . (isset($row["cpfCNPJ"]) ? $row["cpfCNPJ"] : "Aparentemente este cliente não tem um CPF ou um CNPJ!") . "</td>
+        <td>" . (isset($row["endereco"]) ? $row["endereco"] : "Aparentemente este cliente não tem um endereço!") . "</td>
+        <td>" . (isset($row["cidade"]) ? $row["cidade"] : "Aparentemente este cliente não tem uma cidade!") . "</td>
+        <td>" . (isset($row["telefone"]) ? $row["telefone"] : "Aparentemente este cliente não tem telefone!") . "</td>
+        <td>" . (isset($row["e-mail"]) ? $row["e-mail"] : "Aparentemente este cliente não tem um e-mail!") . "</td>
+        <td> " . (function($row) {
+            if(!$row["data"] == ""){
                 $data_excel = $row["data"];
                 $data_unix = ($data_excel - 25569) * 86400;
                 return date("d/m/Y", $data_unix);
-            })($row) ." </td>
-            <td>R$ " . $row["ultCompra"] . "</td>
-            <td> " . (function($row){
+            } else {
+                return "Aparentemente este cliente não comprou nada.";
+            }
+        })($row) . " </td>
+        <td>R$ " . (isset($row["ultCompra"]) ? $row["ultCompra"] : "Aparentemente este cliente não fez nenhuma compra!") . "</td>
+        <td> " . (function($row){
+            if(!$row["data"] == "") {
                 $excelTimestamp = $row["data"];
                 $excelStartDateUnix = strtotime('1900-01-01');
                 $unixTimestamp = ($excelTimestamp - 25569) * 86400;
                 $currentTimestamp = time();
                 $daysOfDifference = floor(($currentTimestamp - $unixTimestamp) / 86400);
                 return $daysOfDifference;
-            })($row) . "</td>
-        </tr>
-        ";
-        }
+            } else {
+                return "Aparentemente este cliente não comprou nada!";
+            }
+        })($row) . "</td>
+    </tr>
+    ";
+    }
     echo "</table>";
     
     echo '<br>';
@@ -62,7 +67,9 @@ if ($result->num_rows > 0) {
     $hstQuery = "SELECT * FROM historico WHERE codigo = '$codigo'";
     $hstResult = $conn->query($hstQuery);
 
+    //checks if there is history
     if($hstResult->num_rows > 0) {
+        //creates tables to show history info
         echo
         '<table border=1>
         <tr>
@@ -87,12 +94,16 @@ if ($result->num_rows > 0) {
     }
 
     echo '<br>';
+
+    //form to insert data
     echo '
         <input type="text" readonly value="' . $codigo . '">
         <input type="text" name="vendedor" id="vendedor" placeholder="Vendedor">
         <input type="text" name="observacao" id="observacao" placeholder="Observação">
         <button onclick="triggerInsert(); consultarCodigo();">Gravar</button>
     ';
+
+    echo 'oi';
 
 } else {
     echo '<br><table border="1"><tr><td>Este cliente não existe</td></tr></table>';
