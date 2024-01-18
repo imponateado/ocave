@@ -29,22 +29,22 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
     echo "
     <tr>
-        <td>" . (isset($row["nome"]) ? $row["nome"] : "Aparentemente este cliente não tem nome!") . "</td>
-        <td>" . (isset($row["cpfCNPJ"]) ? $row["cpfCNPJ"] : "Aparentemente este cliente não tem um CPF ou um CNPJ!") . "</td>
-        <td>" . (isset($row["endereco"]) ? $row["endereco"] : "Aparentemente este cliente não tem um endereço!") . "</td>
-        <td>" . (isset($row["cidade"]) ? $row["cidade"] : "Aparentemente este cliente não tem uma cidade!") . "</td>
-        <td>" . (isset($row["telefone"]) ? $row["telefone"] : "Aparentemente este cliente não tem telefone!") . "</td>
-        <td>" . (isset($row["e-mail"]) ? $row["e-mail"] : "Aparentemente este cliente não tem um e-mail!") . "</td>
+        <td>" . (isset($row["nome"]) ? $row["nome"] : "Cliente não tem nome!") . "</td>
+        <td>" . (isset($row["cpfCNPJ"]) ? $row["cpfCNPJ"] : "Cliente não tem um CPF ou um CNPJ!") . "</td>
+        <td>" . (isset($row["endereco"]) ? $row["endereco"] : "Cliente não tem um endereço!") . "</td>
+        <td>" . (isset($row["cidade"]) ? $row["cidade"] : "Cliente não tem uma cidade!") . "</td>
+        <td>" . (isset($row["telefone"]) ? $row["telefone"] : "Cliente não tem telefone!") . "</td>
+        <td>" . (isset($row["e-mail"]) ? $row["e-mail"] : "cliente não tem um e-mail!") . "</td>
         <td> " . (function($row) {
             if(!$row["data"] == ""){
                 $data_excel = $row["data"];
                 $data_unix = ($data_excel - 25569) * 86400;
                 return date("d/m/Y", $data_unix);
             } else {
-                return "Aparentemente este cliente não comprou nada.";
+                return "Cliente não comprou nada.";
             }
         })($row) . " </td>
-        <td>R$ " . (isset($row["ultCompra"]) ? $row["ultCompra"] : "Aparentemente este cliente não fez nenhuma compra!") . "</td>
+        <td>R$ " . (isset($row["ultCompra"]) ? $row["ultCompra"] : "Cliente não fez nenhuma compra!") . "</td>
         <td> " . (function($row){
             if(!$row["data"] == "") {
                 $excelTimestamp = $row["data"];
@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
                 $daysOfDifference = floor(($currentTimestamp - $unixTimestamp) / 86400);
                 return $daysOfDifference;
             } else {
-                return "Aparentemente este cliente não comprou nada!";
+                return "Cliente não comprou nada!";
             }
         })($row) . "</td>
     </tr>
@@ -102,9 +102,6 @@ if ($result->num_rows > 0) {
         <input type="text" name="observacao" id="observacao" placeholder="Observação">
         <button onclick="triggerInsert(); consultarCodigo();">Gravar</button>
     ';
-
-    echo 'oi';
-
 } else {
     echo '<br><table border="1"><tr><td>Este cliente não existe</td></tr></table>';
 }
