@@ -90,20 +90,33 @@ if ($result->num_rows > 0) {
         }
         echo '</table>';
     } else {
-        echo '<br><table border="1"><tr><td>Cliente ainda não tem histórico</td></tr></table>';
+        echo '<br><table border=1><tr><td>Cliente ainda não tem histórico</td></tr></table>';
     }
 
     echo '<br>';
 
     //form to insert data
     echo '
-        <input type="text" readonly value="' . $codigo . '">
-        <input type="text" name="vendedor" id="vendedor" placeholder="Vendedor">
-        <input type="text" name="observacao" id="observacao" placeholder="Observação">
-        <button onclick="triggerInsert(); consultarCodigo();">Gravar</button>
+        <div class="insert">
+            <table border=1>
+                <tr>
+                    <td style="text-align: center; justify-content: center;">Inserir</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" readonly value="' . $codigo . '">
+                        <input type="text" name="vendedor" id="vendedor" placeholder="Vendedor">
+                        <input type="text" name="observacao" id="observacao" placeholder="Observação">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; justify-content: center;"><button onclick="triggerInsert(); consultarCodigo();">Gravar</button></td>
+                </tr>
+            </table>
+        </div>
     ';
 } else {
-    echo '<br><table border="1"><tr><td>Este cliente não existe</td></tr></table>';
+    echo '<br><table border=1><tr><td>Este cliente não existe</td></tr></table>';
 }
 
 

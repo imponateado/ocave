@@ -8,10 +8,21 @@
 </head>
 <body>
 <center>
-    <label for="codigo">Digite o Código:</label>
-    <input type="text" id="codigo" name="codigo">
-    <button onclick="consultarCodigo()">Consultar</button>
-    <div id="resultado"></div>
+    <div class="placeForCode">
+        <table border="1">
+            <tr>
+                <td>
+                    <label for="codigo">Digite o Código:</label>
+                    <input type="text" id="codigo" name="codigo">
+                    <button onclick="consultarCodigo()">Consultar</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="resultado">
+        Aguardando entrada do usuário <br> <br>
+        <span class="loader" style="background-color: black;"></span>
+    </div>
     <script src="script.js"></script>
 </center>
 </body>
