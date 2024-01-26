@@ -8,9 +8,9 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo
-    '
+    '<div class="clientData">
     <br>
-    <table border=1>
+    <table>
         <tr>
             <td colspan=10 style="text-align: center; font-size: 1.2rem;">Dados do cliente</td>
         </tr>
@@ -60,7 +60,7 @@ if ($result->num_rows > 0) {
     </tr>
     ";
     }
-    echo "</table>";
+    echo "</table></div>";
     
     echo '<br>';
 
@@ -71,7 +71,8 @@ if ($result->num_rows > 0) {
     if($hstResult->num_rows > 0) {
         //creates tables to show history info
         echo
-        '<table border=1>
+        '<div class="clientHistory">
+        <table>
         <tr>
             <td>Data</td>
             <td>Vendedor</td>
@@ -88,17 +89,17 @@ if ($result->num_rows > 0) {
             </tr>
             ';
         }
-        echo '</table>';
+        echo '</table></div>';
     } else {
-        echo '<br><table border=1><tr><td>Cliente ainda não tem histórico</td></tr></table>';
+        echo '<div class="clientHistory"><br><table class="clientHistory"><tr><td>Cliente ainda não tem histórico</td></tr></table></div>';
     }
 
     echo '<br>';
 
     //form to insert data
     echo '
-        <div class="insert">
-            <table border=1>
+        <div class="insertData">
+            <table>
                 <tr>
                     <td style="text-align: center; justify-content: center;">Inserir</td>
                 </tr>
@@ -116,7 +117,7 @@ if ($result->num_rows > 0) {
         </div>
     ';
 } else {
-    echo '<br><table border=1><tr><td>Este cliente não existe</td></tr></table>';
+    echo '<br><div class="insertData"><table class="insertData"><tr><td>Este cliente não existe</td></tr></table></div>';
 }
 
 

@@ -1,75 +1,65 @@
 .loader {
-    width: 60px;
-    height: 40px;
-    position: relative;
-    display: inline-block;
-    --base-color: #263238; /*use your base color*/
+  width: 96px;
+  height: 24px;
+  display: inline-block;
+  background-color: #FFF;
+  border: 1px solid #FFF;
+  border-radius: 4px;
+  background: linear-gradient(45deg, transparent 49%, #FFF 50%, #FFF 50%, transparent 51%, transparent), linear-gradient(-45deg, transparent 49%, #FFF 50%, #FFF 50%, transparent 51%, transparent);
+  font-size: 15px;
+  background-size: 1em 1em;
+  box-sizing: border-box;
+  animation: barStripe 0.6s linear infinite;
+}
+
+@keyframes barStripe {
+  0% {
+    background-position: 1em 0;
   }
-  .loader::before {
-    content: '';  
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: #FFF;
-    background-image: radial-gradient(circle 8px at 18px 18px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 18px 0px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 0px 18px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 36px 18px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 18px 36px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 30px 5px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 30px 5px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 30px 30px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 5px 30px, var(--base-color) 100%, transparent 0), radial-gradient(circle 4px at 5px 5px, var(--base-color) 100%, transparent 0);
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-    animation: rotationBack 3s linear infinite;
+  100% {
+    background-position: 0 0;
   }
-  .loader::after {
-    content: '';  
-    left: 35px;
-    top: 15px;
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: #FFF;
-    background-image: radial-gradient(circle 5px at 12px 12px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 12px 0px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 0px 12px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 24px 12px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 12px 24px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 20px 3px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 20px 3px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 20px 20px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 3px 20px, var(--base-color) 100%, transparent 0), radial-gradient(circle 2.5px at 3px 3px, var(--base-color) 100%, transparent 0);
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-    animation: rotationBack 4s linear infinite reverse;
-  }
-  @keyframes rotationBack {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(-360deg);
-    }
-  }  
+}
 
 * {
     padding: 0;
     margin: 0;
-    border-collapse: collapse;
 }
 
 body {
-    border-radius: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1rem;
+    background-color: rgb(255, 255, 255);
 }
 
 .table {
     width: 200rem;
 }
 
-.placeForCode, #resultado {
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    margin: 0.5rem 1rem 0.5rem 1rem;
-    border-radius: 1rem;   
+div {
+  display: table;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 1rem black;
+  box-shadow: 0.1rem 0.1rem 0.5rem gray;
 }
 
-.insert {
-    margin: 0rem 25rem 0 25rem;
-    padding: 1rem 0 1rem 0;
-    border-radius: 1rem;
+.placeForCode {
+  background-color: #b3f5f4;
+}
+
+.clientData {
+  background-color: #B3CCF5;
+}
+
+.clientHistory {
+  background-color: #B3E1F5;
+}
+
+.insertData {
+  background-color: #B3F5DD;
 }
 
 td {
-    padding: 0.1rem 1rem 0.1rem 1rem;   
+    padding: 0.1rem 1rem 0.1rem 1rem;
 }
