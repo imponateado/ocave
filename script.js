@@ -43,13 +43,14 @@ function triggerInsert() {
     let codigo = document.getElementById("codigo").value;
     let vendedor = document.getElementById("vendedor").value;
     let observacao = document.getElementById("observacao").value;
+    let isSevere = document.getElementById("isSevere").checked;
 
     if(codigo === "" && vendedor === "" && observacao === "") {
         alert("Algum dos campos, código, vendedor ou observação está faltando.");
         return;
     }
 
-    let url = window.location.href + "insertData.php?codigo=" + codigo + "&vendedor=" + vendedor + "&observacao=" + observacao;
+    let url = window.location.href + "insertData.php?codigo=" + codigo + "&vendedor=" + vendedor + "&observacao=" + observacao + "&isSevere=" + isSevere;
 
     fetch(url)
     .then(response => {

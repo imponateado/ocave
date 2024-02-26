@@ -80,14 +80,23 @@ if ($result->num_rows > 0) {
         </tr>
         ';
         while($row = $hstResult->fetch_assoc()) {
-            echo 
-            '
-            <tr>
-                <td>' . $row["data"] . '</td>
-                <td>' . $row["vendedor"] . '</td>
-                <td>' . $row["observacao"] . '</td>
-            </tr>
-            ';
+            if($row["isSevere"] == "true") {
+                echo '
+                    <tr style="background-color: red;">
+                        <td> ' . $row["data"] . '</td>
+                        <td> ' . $row["vendedor"] . '</td>
+                        <td> ' . $row["observacao"] . '</td>
+                    </tr>
+                ';
+            } else {
+                echo '
+                <tr> 
+                    <td> ' . $row["data"] . '</td>
+                    <td> ' . $row["vendedor"] . '</td>
+                    <td> ' . $row["observacao"] . '</td>
+                </tr>   
+                ';
+            }
         }
         echo '</table></div>';
     } else {
@@ -108,6 +117,7 @@ if ($result->num_rows > 0) {
                         <input type="text" readonly value="' . $codigo . '">
                         <input type="text" name="vendedor" id="vendedor" placeholder="Vendedor">
                         <input type="text" name="observacao" id="observacao" placeholder="Observação">
+                        Reclamação grave? <input type="checkbox" id="isSevere">
                     </td>
                 </tr>
                 <tr>
