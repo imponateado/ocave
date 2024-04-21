@@ -11,7 +11,11 @@ require '../functions/head.php';
 		?>
 		<!-- Page Content  -->
 		<div id="content" class="p-4 p-md-5 pt-5">
-            Página em construção
+			<?php require '../functions/getClientCode.php' ?>
+			<?php require '../functions/getClientData.php' ?>
+			<div id="historicoVendaLigacao">
+				
+			</div>
 		</div>
 	</div>
 
