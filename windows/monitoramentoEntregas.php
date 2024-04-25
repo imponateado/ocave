@@ -98,11 +98,6 @@
       const observacao = document.getElementById('observacao').value;
       const produtoGostariaEntregasse = document.getElementById('produtoGostariaEntregasse').value;
 
-      // if(ordemCarregamento === "" && nomeContato === "" && avaliacaoEmpresa === ""){
-      //   alert("Algum dos campos, número da liberação, ou nome do contato, ou avaliação da empresa está (estão) faltando.");
-      //   return;
-      // }
-
       let baseUrl = window.location.protocol + '//' + window.location.hostname;
       if (window.location.port) {
         baseUrl += ':' + window.location.port;

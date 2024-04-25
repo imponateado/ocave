@@ -59,12 +59,12 @@
               <td>${item.data}</td>
               <td>${item.vendedor}</td>
               <td>${item.contato}</td>
-              <td>${item.observacaoCliente}</td>
+              <td>${item.obsCliente}</td>
               <td>${item.preco}</td>
-              <td>${item.observacaoVendedor}</td>
+              <td>${item.obsVendedor}</td>
               <td>${item.fornecedor}</td>
               <td>${item.acao}</td>
-              <td>${item.clienteNaoAtende}</td>
+              <td>${item.clienteNaoAtendeu}</td>
               <td>${item.fantasma}</td>
             </tr>
           `;
