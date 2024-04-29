@@ -150,13 +150,28 @@ require '../functions/head.php';
 			let url = `${baseUrl}/ocave/backend/putFormVenda.php?codigo=${clientCode}&vendedor=${vendedor}&clienteNaoAtendeu=${clienteNaoAtendeu}&fantasma=${fantasma}&representante=${representante}&preco=${preco}&fornecedor=${fornecedor}&referencia=${referencia}&acao=${acao}&obsCliente=${obsCliente}&contato=${contato}&obsVendedor=${obsVendedor}`;
 			fetch(url)
 			.then(response => {
-				if (!response.ok) {
-					throw new Error('Network response was not ok');
+				if(response.ok) {
+					return response.text();
+				} else {
+					throw new Error('Erro na solicitação: ' + response.status);
 				}
-				return response;
 			})
 			.then(data => {
 				window.alert(data);
+				getClientCode();
+				document.getElementById('clienteNaoAtendeu').checked = false;
+				document.getElementById('fantasma').checked = false;
+				document.getElementById('representante').checked = false;
+				document.getElementById('prontaEntregaIncolor').value = "";
+				document.getElementById('prontaEntregaFume').value = "";
+				document.getElementById('engenhariaIncolor').value = "";
+				document.getElementById('engenhariaFume').value = "";
+				document.getElementById('fornecedor').value = "";
+				document.getElementById('referencia').value = "";
+				document.getElementById('acao').value = "";
+				document.getElementById('obsCliente').value = "";
+				document.getElementById('contato').value = "";
+				document.getElementById('obsVendedor').value = "";
 			})
 		}
 	</script>
