@@ -10,7 +10,7 @@
               </div>
             </span>
             <span class="col-1">
-                <button type="button" class="btn btn-success" onclick="getClientCode();">Pronto</button>
+                <button type="button" class="btn btn-success" onclick="getClientCode();">Consultar</button>
             </span>
         </p>
     </div>

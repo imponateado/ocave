@@ -1,28 +1,9 @@
-<div class="card" aria-hidden="true">
-  <div class="card-body">
-    <h5 class="card-title">
-      <span class="col-6" id="businessName">Nome cliente</span>
-    </h5>
-    <p class="card-text">
-      <span class="col-7" id="cityName">Cidade</span>
-      <span class="col-4" id="phoneNumber">Telefone</span>
-      <span class="col-4" id="lastBought">Data da última compra</span>
-      <span class="col-6" id="totalBoughtValue">Valor já comprado</span>
-      <span class="col1" id='dateLastBought'>Dias desde a última compra</span>
-    </p>
-  </div>
+<div class="card" aria-hidden="true" id="customerRecord">
+  Aguardando usuário digitar um código!
 </div>
 
 <script>
   function getClientCode() {
-
-    document.getElementById('businessName').innerHTML = "<div class='loader'></div>";
-    document.getElementById('cityName').innerHTML = "<div class='loader'></div>";
-    document.getElementById('phoneNumber').innerHTML = "<div class='loader'></div>";
-    document.getElementById('lastBought').innerHTML = "<div class='loader'></div>";
-    document.getElementById('totalBoughtValue').innerHTML = "<div class='loader'></div>";
-    document.getElementById('dateLastBought').innerHTML = "<div class='loader'></div>";
-
     //---------------------------------------------------------------------
     const clientCode = document.getElementById('clientCode').value;
     let baseUrl = window.location.protocol + '//' + window.location.hostname;
@@ -35,12 +16,21 @@
     .then(data => {
       const { nome, cidade, telefone, dataUltimaCompra, valorCompradoTotal, diasDesdeUltimaCompra } = data;
 
-      document.getElementById('businessName').textContent = data.nome;
-      document.getElementById('cityName').textContent = data.cidade;
-      document.getElementById('phoneNumber').textContent = data.telefone;
-      document.getElementById('lastBought').textContent = data.dataUltimaCompra;
-      document.getElementById('totalBoughtValue').textContent = data.valorCompradoTotal;
-      document.getElementById('dateLastBought').textContent = data.diasDesdeUltimaCompra;
+      var hstTable = '<table class="table"><thead class="thead-dark"><tr><td>Nome cliente</td><td>Cidade</td><td>Telefone</td><td>Data da última compra</td><td>Valor já comprado</td><td>Dias desde a última compra</td></tr></div><tbody class="tbody-dark">';
+
+      hstTable += `
+        <tr>
+          <td>${data.nome}</td>
+          <td>${data.cidade}</td>
+          <td>${data.telefone}</td>
+          <td>${data.dataUltimaCompra}</td>
+          <td>${data.valorCompradoTotal}</td>
+          <td style="text-align: center;">${data.diasDesdeUltimaCompra}</td>
+        </tr>
+      </tbody></table>
+      `
+
+      document.getElementById('customerRecord').innerHTML = hstTable;
     }).catch(error => {
       console.error('Ocorreu um erro: ', error);
     });
@@ -50,23 +40,24 @@
       fetch(url)
       .then(response => response.json())
       .then( data => {
-        let hstTable = '<table class="table"><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Observação do cliente</th><th scope="col">Preço</th><th scope="col">Observação do vendedor</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não atendeu?</th><th scope="col">Fantasma</th> </tr></thead><tbody>';
+        let hstTable = '<table class="table"><thead class="thead-dark"><tr><th scope="col">Vendedor</th><th scope="col">Data</th><th scope="col">Obs Cliente</th><th scope="col">Cliente não atendeu?</th><th scope="col">Fantasma</th><th scope="col">Cliente muito insatisfeito?</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Referência</th><th scope="col">Ação</th><th scope="col">Contato</th><th scope="col">Obs Vendedor</th></tr></thead><tbody>';
 
         data.slice(-3).forEach(item => {
           hstTable += `
-            <tr>
-              <td>${item.codigo}</td>
-              <td>${item.data}</td>
-              <td>${item.vendedor}</td>
-              <td>${item.contato}</td>
-              <td>${item.obsCliente}</td>
-              <td>${item.preco}</td>
-              <td>${item.obsVendedor}</td>
-              <td>${item.fornecedor}</td>
-              <td>${item.acao}</td>
-              <td>${item.clienteNaoAtendeu}</td>
-              <td>${item.fantasma}</td>
-            </tr>
+          <tr>
+            <td scope="row">${item.vendedor ? item.vendedor : '🚫'}</td>          
+            <td>${item.data}</td>
+            <td>${item.obsCliente ? item.obsCliente : '🚫'}</td>          
+            <td>${item.clienteNaoAtendeu == "1" ? '🟥' : '⬜'}</td>
+            <td>${item.fantasma == "1" ? '🟥' : '⬜'}</td>          
+            <td>${item.representante == "1" ? '🟥' : '⬜'}</td>          
+            <td>${item.preco ? item.preco : '🚫'}</td>          
+            <td>${item.fornecedor ? item.fornecedor : '🚫'}</td>          
+            <td>${item.referencia ? item.referencia : '🚫'}</td>          
+            <td>${item.acao ? item.acao : '🚫'}</td>          
+            <td>${item.contato ? item.contato : '🚫'}</td>          
+            <td>${item.obsVendedor ? item.obsVendedor : '🚫'}</td>
+          </tr>          
           `;
         });
 

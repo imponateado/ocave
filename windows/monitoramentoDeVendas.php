@@ -24,12 +24,25 @@ require '../functions/head.php';
 										<span class="input-group-text" id="inputGroup-sizing-default">Vendedor</span>
 									</div>
 									<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="vendedor">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-default">Contato</span>
+									</div>
+									<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="contato">
 								</div>
 							<!-- --------------- -->
 							<!-- --------------- -->
-														<div class="form-check">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="inputGroup-sizing-default">Observação do cliente</span>
+									</div>
+									<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="obsCliente">
+								</div>
+							<!-- --------------- -->
+							<!-- --------------- -->
+								<div class="form-check">
 									<input class="form-check-input" type="checkbox" id="clienteNaoAtendeu">
 									<label class="form-check-label btn btn-danger" for="clienteNaoAtendeu">Cliente não atendeu?</label>
+									<button class="btn btn-primary" onclick="insertData()" style="margin-left: 10rem;">Gravar</button>
 								</div>
 							<!-- --------------- -->
 							<!-- --------------- -->
@@ -41,7 +54,7 @@ require '../functions/head.php';
 							<!-- --------------- -->
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" id="representante">
-									<label class="form-check-label btn btn-danger" for="representante">Representante</label>
+									<label class="form-check-label btn btn-danger" for="representante">Cliente muito insatisfeito</label>
 								</div>
 							<!-- --------------- -->
 							<br>
@@ -94,18 +107,6 @@ require '../functions/head.php';
 							<!-- --------------- -->
 							<!-- --------------- -->
 								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="inputGroup-sizing-default">Observação do cliente</span>
-									</div>
-									<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="obsCliente">
-								</div>
-							<!-- --------------- -->
-							<!-- --------------- -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="inputGroup-sizing-default">Contato</span>
-									</div>
-									<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="contato">
 								</div>
 							<!-- --------------- -->
 							<!-- --------------- -->
@@ -116,7 +117,9 @@ require '../functions/head.php';
 									<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="obsVendedor">
 								</div>
 							<!-- --------------- -->
-							<!-- --------------- --><button class="btn btn-success" onclick="insertData()">Pronto</button><!-- --------------- -->
+							<!-- --------------- -->
+							<button class="btn btn-success" onclick="insertData()">Gravar</button>
+							<!-- --------------- -->
 						</p>
 					</div>
 				</div>

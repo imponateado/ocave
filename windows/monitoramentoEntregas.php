@@ -15,64 +15,56 @@
       <div class="card-body">
         <p class="card-text">
           <span class="col-1">
-            <div class="input-group input-group-sm mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">ordem de carregamento (OC)</span>
-              </div>
-              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="ordemCarregamento">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">ordem de carregamento (OC)</span>
             </div>
-          </span>
-          <span class="col-1">
-            <div class="input-group input-group-sm mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Nome do contato</span>
-              </div>
-              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="nomeContato">
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="ordemCarregamento">
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Nome do contato</span>
             </div>
-          </span>
-          <span class="col-1">
-            <div class="input-group input-group-sm mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Telefone do contato</span>
-              </div>
-              <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="telefoneContato">
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="nomeContato">
+          </div>
+          <!-- ----- -->
+          <p>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="OK">
+              <label class="form-check-label" for="OK">
+                <div class="btn btn-success">OK</div>
+              </label>
             </div>
-          </span>
-          <span class="col-1">
+          </p>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="semContato">
             <label class="form-check-label" for="semContato">
-              Sem contato com o cliente
+              <div class="btn btn-danger">Sem contato com o cliente</div>
             </label>
           </div>
+          <!-- ----- -->
+          <p>
+            <button type="button" class="btn btn-success" onclick="insertData();">Gravar</button>
+          </p>
+          <!-- ----- -->
           </span>
 
           <?php require '../functions/listaReclamacaoSetorizado.php' ?>
 
           <span class="col-1">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="alerta">
-                <label class="form-check-label btn btn-danger" for="alerta">
-                  Alerta
-                </label>
-              </div>
+              <input class="form-check-input" type="checkbox" id="alerta">
+              <label class="form-check-label btn btn-danger" for="alerta">
+                Muito insatisfeito
+              </label>
+            </div>
           </span>
-          <span class="col-1">
-              <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Observação</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="observacao">
-              </div>
-          </span>
-          <span class="col-1">
-              <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Produto que gostaria que entregassemos</span>
-                </div>
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="produtoGostariaEntregasse">
-              </div>
-          </span>
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Observação</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="observacao">
+          </div>
           <span class="col-1">
             <button type="button" class="btn btn-success" onclick="insertData();">Gravar</button>
           </span>
@@ -85,7 +77,7 @@
     function insertData() {
       const ordemCarregamento = document.getElementById('ordemCarregamento').value;
       const nomeContato = document.getElementById('nomeContato').value;
-      const telefoneContato = document.getElementById('telefoneContato').value;
+      const ok = document.getElementById('OK').checked ? '1' : '0';
       const semContato = document.getElementById('semContato').checked;
 
       let questionarioEntregas = Array.from(document.querySelectorAll('input[name="questionario"]:checked'))
@@ -93,16 +85,14 @@
                                       .join(', ');
 
 
-      const avaliacaoEmpresa = document.getElementById('avaliacaoEmpresa').value;
-      const alerta = document.getElementById('alerta').checked;
+      const alerta = document.getElementById('alerta').checked; //alerta agora significa "Muito insatisfeito"
       const observacao = document.getElementById('observacao').value;
-      const produtoGostariaEntregasse = document.getElementById('produtoGostariaEntregasse').value;
 
       let baseUrl = window.location.protocol + '//' + window.location.hostname;
       if (window.location.port) {
         baseUrl += ':' + window.location.port;
       }
-      let url = `${baseUrl}/ocave/backend/insertDataDB.php?ordemCarregamento=${ordemCarregamento}&nomeContato=${nomeContato}&telefoneContato=${telefoneContato}&semContato=${semContato}&questionarioEntregas=${questionarioEntregas}&avaliacaoEmpresa=${avaliacaoEmpresa}&alerta=${alerta}&observacao=${observacao}&produtoGostariaEntregasse=${produtoGostariaEntregasse}`;
+      let url = `${baseUrl}/ocave/backend/insertDataDB.php?ordemCarregamento=${ordemCarregamento}&nomeContato=${nomeContato}&ok=${ok}&semContato=${semContato}&questionarioEntregas=${questionarioEntregas}&alerta=${alerta}&observacao=${observacao}`;
 
       fetch(url)
       .then(response => {

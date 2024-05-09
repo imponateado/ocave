@@ -4,6 +4,7 @@
 $startDate = $_GET['startDate'];
 $endDate = $_GET['endDate'];
 $rota = $_GET['rota'];
+$codigo = $_GET['codigo'];
 
 $endDate = date('Y-m-d', strtotime($endDate . ' +1 day'));
 

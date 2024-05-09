@@ -21,6 +21,8 @@ $queries = [
     'representante' => "SELECT COUNT(*) FROM historicoentregas WHERE questionarioEntregas LIKE '%representante%'",
     'motorista' => "SELECT COUNT(*) FROM historicoentregas WHERE questionarioEntregas LIKE '%motorista%'",
     'carregador' => "SELECT COUNT(*) FROM historicoentregas WHERE questionarioEntregas LIKE '%carregador%'",
+    'comReclamacao' => "SELECT COUNT(*) FROM historicoentregas WHERE questionarioEntregas IS NOT NULL AND questionarioEntregas != ''",
+    'semReclamacao' => "SELECT COUNT(*) FROM historicoentregas WHERE ok = 1 AND questionarioEntregas = ''",
     'naoAtendidas' => "SELECT COUNT(*) FROM historicoentregas WHERE semContato = 'true'",
     'atendidas' => "SELECT COUNT(*) FROM historicoentregas WHERE semContato = 'false'",
     'totalLigacoes' => "SELECT COUNT(*) FROM historicoentregas"

@@ -13,6 +13,7 @@
         Rota: <select aria-label="Default select example" id="rotas">
                 <option value="noValue"></option>
               </select>
+        Cod. Cliente: <input type="text" name="cliente" id="cliente" placeholder="Digite código do cliente">
         <button type="button" class="btn btn-primary" onclick="triggerFilter()">Pronto</button>
       </div>
       <div id="filteredContent"><div class="loader"></div></div>
@@ -26,13 +27,14 @@
       const startDate = document.getElementById('startDate').value;
       const endDate = document.getElementById('endDate').value;
       const rota = document.getElementById('rotas').value;
+      const cliente = document.getElementById('cliente').value;
 
       let baseUrl = window.location.protocol + '//' + window.location.hostname;
       if (window.location.port) {
         baseUrl += ':' + window.location.port;
       }
 
-      let url = `${baseUrl}/ocave/backend/getFilteredDeliveredClientList.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}`;
+      let url = `${baseUrl}/ocave/backend/getFilteredDeliveredClientList.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}&cliente=${cliente}`;
       fetch(url)
         .then(response => {
           if (!response.ok) {

@@ -1,20 +1,17 @@
 <?php
     $ordemCarregamento = $_GET['ordemCarregamento'];
     $nomeContato = $_GET['nomeContato'];
-    $telefoneContato = $_GET['telefoneContato'];
+    $ok = $_GET['ok'];
     $semContato = $_GET['semContato'];
     $questionarioEntregas = $_GET['questionarioEntregas'];
-
-    $avaliacaoEmpresa = $_GET['avaliacaoEmpresa'];
 
     $alerta = $_GET['alerta'];
 
     $observacao = $_GET['observacao'];
-    $produtoGostariaEntregasse = $_GET['produtoGostariaEntregasse'];
 
     require '../functions/makeSqlConnectionToOwn.php';
 
-    $sql = "INSERT INTO historicoentregas (ordemCarregamento, nomeContato, telefoneContato, semContato, questionarioEntregas, avaliacaoEmpresa, alerta, observacao, produtoGostariaEntregasse) VALUES ('$ordemCarregamento', '$nomeContato', '$telefoneContato', '$semContato', '$questionarioEntregas', '$avaliacaoEmpresa', '$alerta', '$observacao', '$produtoGostariaEntregasse')";
+    $sql = "INSERT INTO historicoentregas (ordemCarregamento, nomeContato, ok, semContato, questionarioEntregas, alerta, observacao) VALUES ('$ordemCarregamento', '$nomeContato', '$ok', '$semContato', '$questionarioEntregas', '$alerta', '$observacao')";
 
     if($OwnConn->query($sql) === TRUE) {
         echo "Registrado com sucesso.";

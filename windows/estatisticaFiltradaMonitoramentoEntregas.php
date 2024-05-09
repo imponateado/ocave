@@ -109,6 +109,18 @@ require '../functions/head.php';
 						</td>
 					</tr>
 					<tr>
+						<th scope="row">Com reclamação</th>
+						<td id="comReclamacao">
+							<div class="loader"></div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Entregas OK</th>
+						<td id="semReclamacao">
+							<div class="loader"></div>
+						</td>
+					</tr>
+						<tr>
 						<th scope="row">Total de ligações não atendidas</th>
 						<td id="naoAtendidas">
 							<div class="loader"></div>
@@ -158,6 +170,8 @@ require '../functions/head.php';
 						representante,
 						motorista,
 						carregador,
+						comReclamacao,
+						semReclamacao,
 						naoAtendidas,
 						atendidas,
 						totalLigacoes
@@ -176,6 +190,8 @@ require '../functions/head.php';
 					document.getElementById('representante').textContent = data.representante;
 					document.getElementById('motorista').textContent = data.motorista;
 					document.getElementById('carregador').textContent = data.carregador;
+					document.getElementById('comReclamacao').textContent = data.comReclamacao;
+					document.getElementById('semReclamacao').textContent = data.semReclamacao;
 					document.getElementById('naoAtendidas').textContent = data.naoAtendidas;
 					document.getElementById('atendidas').textContent = data.atendidas;
 					document.getElementById('totalLigacoes').textContent = data.totalLigacoes;
@@ -219,6 +235,8 @@ require '../functions/head.php';
 			document.getElementById('representante').innerHTML = "<div class='loader'></div>";
 			document.getElementById('motorista').innerHTML = "<div class='loader'></div>";
 			document.getElementById('carregador').innerHTML = "<div class='loader'></div>";
+			document.getElementById('comReclamacao').innerHTML = "<div class='loader'></div>";
+			document.getElementById('semReclamacao').innerHTML = "<div class='loader'></div>";
 			document.getElementById('naoAtendidas').innerHTML = "<div class='loader'></div>";
 			document.getElementById('atendidas').innerHTML = "<div class='loader'></div>";
 			document.getElementById('totalLigacoes').innerHTML = "<div class='loader'></div>";
@@ -243,22 +261,24 @@ require '../functions/head.php';
 				return response.json();
 			})
 			.then(data => {
-				document.getElementById('cobrancaIndevida').innerHTML = data.cobrancaIndevida;
-				document.getElementById('valorIncorreto').innerHTML = data.valorIncorreto;
-				document.getElementById('pedidoIncompleto').innerHTML = data.pedidoIncompleto;
-				document.getElementById('pedidoNaoEntregue').innerHTML = data.pedidoNaoEntregue;
-				document.getElementById('erroEngenharia').innerHTML = data.erroEngenharia;
-				document.getElementById('atendimento').innerHTML = data.atendimento;
-				document.getElementById('avarias').innerHTML = data.avarias;
-				document.getElementById('arranhados').innerHTML = data.arranhados;
-				document.getElementById('atrasoEntrega').innerHTML = data.atrasoEntrega;
-				document.getElementById('vendedor').innerHTML = data.vendedor;
-				document.getElementById('representante').innerHTML = data.representante;
-				document.getElementById('motorista').innerHTML = data.motorista;
-				document.getElementById('carregador').innerHTML = data.carregador;
-				document.getElementById('naoAtendidas').innerHTML = data.semContatoTrue;
-				document.getElementById('atendidas').innerHTML = data.semContatoFalse;
-				document.getElementById('totalLigacoes').innerHTML = data.total;
+				document.getElementById('cobrancaIndevida').textContent = data.cobrancaIndevida;
+				document.getElementById('valorIncorreto').textContent = data.valorIncorreto;
+				document.getElementById('pedidoIncompleto').textContent = data.pedidoIncompleto;
+				document.getElementById('pedidoNaoEntregue').textContent = data.pedidoNaoEntregue;
+				document.getElementById('erroEngenharia').textContent = data.erroEngenharia;
+				document.getElementById('atendimento').textContent = data.atendimento;
+				document.getElementById('avarias').textContent = data.avarias;
+				document.getElementById('arranhados').textContent = data.arranhados;
+				document.getElementById('atrasoEntrega').textContent = data.atrasoEntrega;
+				document.getElementById('vendedor').textContent = data.vendedor;
+				document.getElementById('representante').textContent = data.representante;
+				document.getElementById('motorista').textContent = data.motorista;
+				document.getElementById('carregador').textContent = data.carregador;
+				document.getElementById('comReclamacao').textContent = data.comReclamacao;
+				document.getElementById('semReclamacao').textContent = data.semReclamacao;
+				document.getElementById('naoAtendidas').textContent = data.semContatoTrue;
+				document.getElementById('atendidas').textContent = data.semContatoFalse;
+				document.getElementById('totalLigacoes').textContent = data.total;
 			})
 
 		}

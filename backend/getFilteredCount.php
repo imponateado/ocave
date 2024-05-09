@@ -7,8 +7,8 @@
 
     $sql = "
         SELECT COUNT(*) as total,
-               SUM(CASE WHEN semContato = 'true' THEN 1 ELSE 0 END) as semContatoTrue,
-               SUM(CASE WHEN semContato = 'false' THEN 1 ELSE 0 END) as semContatoFalse,
+               SUM(CASE WHEN questionarioEntregas != '' THEN 1 ELSE 0 END) as comReclamacao,
+               SUM(CASE WHEN questionarioEntregas = '' THEN 1 ELSE 0 END) as semReclamacao,
                SUM(CASE WHEN questionarioEntregas LIKE '%cobrancaIndevida%' THEN 1 ELSE 0 END) as cobrancaIndevida,
                SUM(CASE WHEN questionarioEntregas LIKE '%valorIncorreto%' THEN 1 ELSE 0 END) as valorIncorreto,
                SUM(CASE WHEN questionarioEntregas LIKE '%pedidoIncompleto%' THEN 1 ELSE 0 END) as pedidoIncompleto,
@@ -21,7 +21,9 @@
                SUM(CASE WHEN questionarioEntregas LIKE '%vendedor%' THEN 1 ELSE 0 END) as vendedor,
                SUM(CASE WHEN questionarioEntregas LIKE '%representante%' THEN 1 ELSE 0 END) as representante,
                SUM(CASE WHEN questionarioEntregas LIKE '%motorista%' THEN 1 ELSE 0 END) as motorista,
-               SUM(CASE WHEN questionarioEntregas LIKE '%carregador%' THEN 1 ELSE 0 END) as carregador
+               SUM(CASE WHEN questionarioEntregas LIKE '%carregador%' THEN 1 ELSE 0 END) as carregador,
+               SUM(CASE WHEN semContato = 'true' THEN 1 ELSE 0 END) as semContatoTrue,
+                SUM(CASE WHEN semContato = 'false' THEN 1 ELSE 0 END) as semContatoFalse
         FROM historicoentregas
         JOIN ordem_carga ON historicoentregas.ordemCarregamento = ordem_carga.IDORDEMCARGA
         JOIN carregamento ON ordem_carga.IDCARREGAMENTO = carregamento.IDCARREGAMENTO
