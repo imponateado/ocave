@@ -8,7 +8,7 @@
             <!-- Page Content  -->
             <div id="content" class="p-4 p-md-5 pt-5">
 				<div class="card">
-					<div class="card-body"> <!-- card body -->
+					<div class="card-body" id="entireForm"> <!-- card body -->
 						<!-- BEGIN OF AN INPUT TYPE TEXT -->
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
@@ -19,7 +19,7 @@
 						<!-- END OF AN INPUT TYPE TEXT -->
 						<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="clienteNovo">
+							<input class="form-check-input" type="checkbox" id="clienteNovo">
 							<label class="form-check-label" for="clienteNovo">
 								Cliente Novo
 							</label>
@@ -27,7 +27,7 @@
 						<!-- END OF AN INPUT TYPE CHECKBOX -->
 						<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="ohOhOh">
+							<input class="form-check-input" type="checkbox" id="ohOhOh">
 							<label class="form-check-label" for="ohOhOh">
 								R$0,00
 							</label>
@@ -35,7 +35,7 @@
 						<!-- END OF AN INPUT TYPE CHECKBOX -->
 						<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="inativo">
+							<input class="form-check-input" type="checkbox" id="inativo">
 							<label class="form-check-label" for="inativo">
 								Inativo
 							</label>
@@ -43,7 +43,7 @@
 						<!-- END OF AN INPUT TYPE CHECKBOX -->
 						<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="empresaFechou">
+							<input class="form-check-input" type="checkbox" id="empresaFechou">
 							<label class="form-check-label" for="empresaFechou">
 								Empresa Fechou
 							</label>
@@ -51,7 +51,7 @@
 						<!-- END OF AN INPUT TYPE CHECKBOX -->
 						<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="enderecoNaoLocalizado">
+							<input class="form-check-input" type="checkbox" id="enderecoNaoLocalizado">
 							<label class="form-check-label" for="enderecoNaoLocalizado">
 								Endereço Não Localizado
 							</label>
@@ -59,7 +59,7 @@
 						<!-- END OF AN INPUT TYPE CHECKBOX -->
 						<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="telefoneNaoAtende">
+							<input class="form-check-input" type="checkbox" id="telefoneNaoAtende">
 							<label class="form-check-label" for="telefoneNaoAtende">
 								Telefone Não Atende
 							</label>
@@ -160,40 +160,40 @@
 							<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" id="" name="formaPgto">
-								<label class="form-check-label" for="">
-									Placeholder
+								<label class="form-check-label" for="aVista">
+									A vista
 								</label>
 							</div>
 							<!-- END OF AN INPUT TYPE CHECKBOX -->
 							<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" id="" name="formaPgto">
-								<label class="form-check-label" for="">
-									Placeholder
+								<label class="form-check-label" for="cartao">
+									Cartão
 								</label>
 							</div>
 							<!-- END OF AN INPUT TYPE CHECKBOX -->
 							<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" id="" name="formaPgto">
-								<label class="form-check-label" for="">
-									Placeholder
+								<label class="form-check-label" for="boleto">
+									Boleto
 								</label>
 							</div>
 							<!-- END OF AN INPUT TYPE CHECKBOX -->
 							<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" id="" name="formaPgto">
-								<label class="form-check-label" for="">
-									Placeholder
+								<label class="form-check-label" for="chequeTerceiro">
+									Cheque de terceiros
 								</label>
 							</div>
 							<!-- END OF AN INPUT TYPE CHECKBOX -->
 							<!-- BEGIN OF AN INPUT TYPE CHECKBOX -->
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" id="" name="formaPgto">
-								<label class="form-check-label" for="">
-									Placeholder
+								<label class="form-check-label" for="chequeProprio">
+									Cheque Próprio
 								</label>
 							</div>
 							<!-- END OF AN INPUT TYPE CHECKBOX -->
@@ -248,41 +248,41 @@
 							<!-- BEGIN OF AN INPUT TYPE TEXT -->
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Placeholder</span>
+									<span class="input-group-text" id="inputGroup-sizing-default">Box e janela incolor</span>
 								</div>
-								<input type="text" class="form-control" aria-label="Default" id="" aria-describedby="inputGroup-sizing-default">
+								<input type="text" class="form-control" aria-label="Default" id="boxJanelaIncolor" aria-describedby="inputGroup-sizing-default" name="precos">
 							</div>
 							<!-- END OF AN INPUT TYPE TEXT -->
 							<!-- BEGIN OF AN INPUT TYPE TEXT -->
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Placeholder</span>
+									<span class="input-group-text" id="inputGroup-sizing-default">Box e janela fumê</span>
 								</div>
-								<input type="text" class="form-control" aria-label="Default" id="" aria-describedby="inputGroup-sizing-default">
+								<input type="text" class="form-control" aria-label="Default" id="boxJanelaFume" aria-describedby="inputGroup-sizing-default" name="precos">
 							</div>
 							<!-- END OF AN INPUT TYPE TEXT -->
 							<!-- BEGIN OF AN INPUT TYPE TEXT -->
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Placeholder</span>
+									<span class="input-group-text" id="inputGroup-sizing-default">Porta</span>
 								</div>
-								<input type="text" class="form-control" aria-label="Default" id="" aria-describedby="inputGroup-sizing-default">
+								<input type="text" class="form-control" aria-label="Default" id="porta" aria-describedby="inputGroup-sizing-default" name="precos">
 							</div>
 							<!-- END OF AN INPUT TYPE TEXT -->
 							<!-- BEGIN OF AN INPUT TYPE TEXT -->
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Placeholder</span>
+									<span class="input-group-text" id="inputGroup-sizing-default">Engenharia Incolor</span>
 								</div>
-								<input type="text" class="form-control" aria-label="Default" id="" aria-describedby="inputGroup-sizing-default">
+								<input type="text" class="form-control" aria-label="Default" id="engenhariaIncolor" aria-describedby="inputGroup-sizing-default" name="precos">
 							</div>
 							<!-- END OF AN INPUT TYPE TEXT -->
 							<!-- BEGIN OF AN INPUT TYPE TEXT -->
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Placeholder</span>
+									<span class="input-group-text" id="inputGroup-sizing-default">Engenharia Fumê</span>
 								</div>
-								<input type="text" class="form-control" aria-label="Default" id="" aria-describedby="inputGroup-sizing-default">
+								<input type="text" class="form-control" aria-label="Default" id="engenhariaFume" aria-describedby="inputGroup-sizing-default" name="precos">
 							</div>
 							<!-- END OF AN INPUT TYPE TEXT -->
 						</div>
@@ -337,17 +337,56 @@
         </div>
 		<script>
 			function putFormRepresentante() {
-				let allForms = document.querySelectorAll('.content');
-				let values = {};
+				
+				var inputs = document.querySelectorAll('input');
+				var dados = {};
 
-				allForms.forEach((form) => {
-					let inputs = form.querySelectorAll('input');
-					inputs.forEach((input, index) => {
-						values[`input${index}`] = input.value;
-					});
+				inputs.forEach(function(input) {
+					if(input.name) {
+						if (input.type === 'checkbox') {
+							if(input.checked) {
+								dados[input.name] ? (dados[input.name] += `, ${input.id}`) : (dados[input.name] = input.id);
+							}
+						}
+						if (input.type === 'text') {
+							dados[input.name] ? (dados[input.name] += `, ${input.value}`) : (dados[input.name] = input.value);
+						}
+					} else {
+						if (input.type === "checkbox") {
+							input.checked ? (dados[input.id] = 1) : (dados[input.id] = 0);
+						}
+						if (input.type === "text") {
+							dados[input.id] = input.value;
+						}
+					}
 				});
 
-				console.log(values);
+				let baseUrl = window.location.protocol + '//' + window.location.hostname;
+				if (window.location.port) {
+					baseUrl += ':' + window.location.port;
+				}
+				const url = `${baseUrl}/ocave/backend/putFormRepresentante.php`;
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dados)
+				};
+
+				fetch(url, options)
+				.then(response => {
+					if(!response.ok) {
+						throw new Error('Erro ao enviar os dados');
+					}
+					return response.text();
+				})
+				.then(data => {
+					window.alert(data);
+				})
+				.catch(error => {
+					window.alert(data);
+				});
 			}
 		</script>
 
