@@ -1,9 +1,9 @@
 <?php
     $OwnHost = "127.0.0.1";
-    $OwnPort = 3307;
-    $OwnUser = "root";
+    $OwnPort = ;
+    $OwnUser = "";
     $OwnPass = "";
-    $OwnDBName = "brasiltemper";
+    $OwnDBName = "";
 
     $OwnConn = new mysqli($OwnHost, $OwnUser, $OwnPass, $OwnDBName, $OwnPort);
 
