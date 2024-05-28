@@ -37,6 +37,14 @@
                 <a href="/ocave/windows/controleDeViagem.php"><span class="fa fa-circle mr-3"></span>
                 Controle de viagem</a>
             </li>
+            <li>
+                <a href="/ocave/windows/gerarTabelaOC.php"><span class="fa fa-circle mr-3"></span>
+                Gerar tabela de ordens de carregamento</a>
+            </li>
+            <li>
+                <a href="/ocave/windows/listarControlesDeViagem.php"><span class="fa fa-circle mr-3"></span>
+                Listar controles de viagem</a>
+            </li>
         </ul>
 
         <div class="footer">

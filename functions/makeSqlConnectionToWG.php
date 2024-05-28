@@ -1,8 +1,8 @@
 <?php
-    $WGHost = "";
-    $WGUser = "";
-    $WGPass = "";
-    $WGDBName = "";
+    $WGHost = "192.168.20.10";
+    $WGUser = "brasil";
+    $WGPass = "Br@s1l123";
+    $WGDBName = "brasilvidro";
 
     $WGConn = new mysqli($WGHost, $WGUser, $WGPass, $WGDBName);
 

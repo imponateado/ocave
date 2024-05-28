@@ -22,9 +22,9 @@ require 'head.php';
             <span class="col-6">Tecno vidros</span>
           </h5>
           <p class="card-text placeholder-glow">
-            <span class="col-7">00000</span>
-            <span class="col-4">Nome vidraçaria</span>
-            <span class="col-4">Num vidraçaria</span>
+            <span class="col-7">61588</span>
+            <span class="col-4">Cristalina</span>
+            <span class="col-4">(61) 99851-7292</span>
             <span class="col-1"></span>
           </p>
         </div>
@@ -34,7 +34,7 @@ require 'head.php';
         <div class="card" aria-hidden="true">
           <div class="card-body">
             <h5 class="card-title placeholder-glow">
-              <span class="col-6">Nome fábrica de vidro</span>
+              <span class="col-6">Brasil Temper</span>
             </h5>
             <p class="card-text placeholder-glow">
               <span class="col-1">03/03/2024</span>
