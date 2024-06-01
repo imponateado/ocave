@@ -22,16 +22,8 @@
                 Prospecção de clientes</a>
             </li>
             <li>
-                <a href="/ocave/windows/suggestions.php"><span class="fa fa-circle mr-3"></span>
-                Sugestões, reclamações, elogios...</a>
-            </li>
-            <li>
                 <a href="/ocave/windows/monitorSaleActions.php"><span class="fa fa-circle mr-3"></span>
                 Ações para prospecção de clientes</a>
-            </li>
-            <li>
-                <a href="/ocave/windows/novoMonitoramentoEntregas.php"><span class="fa fa-circle mr-3"></span>
-                Novo monitoramento entregas</a>
             </li>
             <li>
                 <a href="/ocave/windows/controleDeViagem.php"><span class="fa fa-circle mr-3"></span>
@@ -44,6 +36,10 @@
             <li>
                 <a href="/ocave/windows/listarControlesDeViagem.php"><span class="fa fa-circle mr-3"></span>
                 Listar controles de viagem</a>
+            </li>
+            <li>
+                <a href="/ocave/windows/suggestions.php"><span class="fa fa-circle mr-3"></span>
+                Sugestões, reclamações, elogios...</a>
             </li>
         </ul>
 
