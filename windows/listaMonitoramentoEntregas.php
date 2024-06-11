@@ -22,17 +22,16 @@
 
   <?php require '../functions/scripts.php'; ?>
   <script>
+      let baseUrl = window.location.protocol + '//' + window.location.hostname;
+      if (window.location.port) {
+        baseUrl += ':' + window.location.port;
+      }
 
     function triggerFilter() {
       const startDate = document.getElementById('startDate').value;
       const endDate = document.getElementById('endDate').value;
       const rota = document.getElementById('rotas').value;
       const cliente = document.getElementById('cliente').value;
-
-      let baseUrl = window.location.protocol + '//' + window.location.hostname;
-      if (window.location.port) {
-        baseUrl += ':' + window.location.port;
-      }
 
       let url = `${baseUrl}/ocave/backend/getFilteredDeliveredClientList.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}&cliente=${cliente}`;
       fetch(url)
@@ -44,13 +43,14 @@
         })
         .then(data => {
           let tabela = '<table class="table">';
-          tabela += ' <thead class = "thead-dark"><tr><th>OC</th><th>Cod</th><th>Rota</th><th>Nome</th><th>semContato</th><th>Questionario De Entregas</th><th>Cliente insatisfeito</th><th>Observacao</th><th>data</th></tr></thead><tbody>';
+          tabela += ' <thead class = "thead-dark"><tr><th>OC</th><th>Cod</th><th>Rota</th><th>Nome</th><th>Telefone</th><th>semContato</th><th>Questionario De Entregas</th><th>Cliente insatisfeito</th><th>Observacao</th><th>data</th></tr></thead><tbody>';
           Object.values(data).forEach(item => {
             tabela += `<tr>
             <td>${item.ordemCarregamento}</td>
               <td>${item.IDCLIENTE}</td>
               <td>${item.CODINTERNO}</td>
               <td>${item.nomeContato}</td>
+              <td>${item.TEL_CONT}</td>
               <td>${item.semContato}</td>
               <td>${item.questionarioEntregas}</td>
               <td>${item.alerta}</td>
@@ -65,54 +65,23 @@
 
     window.onload = function () {
 
-      let baseUrl = window.location.protocol + '//' + window.location.hostname;
-      if (window.location.port) {
-        baseUrl += ':' + window.location.port;
-      }
-
-      var url = `${baseUrl}/ocave/backend/getFilteredDeliveredClientList.php`;
+      triggerFilter();
+      
+      var url = `${baseUrl}/ocave/backend/getRotaList.php`;
       fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        let options = '';
+        data.forEach(item => {
+          options += `<option value="${item.IDROTA}">${item.CODINTERNO} - ${item.DESCRICAO} - ${item.IDROTA}</option>`;
+          document.getElementById('rotas').innerHTML = options;
         })
-        .then(data => {
-          let tabela = '<table class="table">';
-          tabela += ' <thead class = "thead-dark"><tr><th>OC</th><th>Cod</th><td>Rota</th><th>Nome</th><th>semContato</th><th>Questionário de entregas</th><th>Cliente insatisfeito</th><th>Observação</th><th>data</th></tr></thead><tbody>';
-          Object.values(data).forEach(item => {
-            tabela += `<tr>
-              <td>${item.ordemCarregamento}</td>
-              <td>${item.IDCLIENTE}</td>
-              <td>${item.IDROTA}</td>
-              <td>${item.nomeContato}</td>
-              <td>${item.semContato}</td>
-              <td>${item.questionarioEntregas}</td>
-              <td>${item.alerta}</td>
-              <td>${item.observacao}</td>
-              <td>${item.data}</td>
-              </tr>`;
-          });
-          tabela += '</tbody></table>';
-          document.getElementById('filteredContent').innerHTML = tabela;
-        })
-
-        var url = `${baseUrl}/ocave/backend/getRotaList.php`;
-        fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          let options = '';
-          data.forEach(item => {
-            options += `<option value="${item.IDROTA}">${item.CODINTERNO} - ${item.DESCRICAO} - ${item.IDROTA}</option>`;
-            document.getElementById('rotas').innerHTML = options;
-          })
-        })
+      })
 
     }
   </script>
