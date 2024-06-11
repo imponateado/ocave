@@ -8,15 +8,30 @@
     <div class="p-4">
         <h1><a href="/ocave/index.php" class="logo">Ocave <span>Consulta ligações</span></a></h1>
         <ul class="list-unstyled components mb-5">
-            <li>
-                <a href="/ocave/windows/monitoramentoEntregas.php"><span class="fa fa-circle mr-3"></span> Monitoramento de entregas</a>
+            <!-- --- -->
+             <li>
+                <a href="#monitoramentoMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <span class="fa fa-circle mr-3"></span>
+                Monitoramento de en-  <br> tregas</a>
+                <ul class="collapse list-unstyled" id="monitoramentoMenu">
+                    <li>
+                        <a href="/ocave/windows/monitoramentoEntregas.php">
+                            <span class="fa fa-circle mr-3"></span>
+                        Inserir monitoramento de entregas</a>
+                    </li>
+                    <li>
+                        <a href="/ocave/windows/listaMonitoramentoEntregas.php">
+                            <span class="fa fa-circle mr-3"></span>
+                        Listar o monitoramento de entregas</a>
+                    </li>
+                    <li>
+                        <a href="/ocave/windows/estatisticaFiltradaMonitoramentoEntregas.php">
+                            <span class="fa fa-circle mr-3"></span>
+                        Estatísticas do monitoramento de entregas</a>
+                    </li>
+                </ul>
             </li>
-            <li>
-                <a href="/ocave/windows/listaMonitoramentoEntregas.php"><span class="fa fa-circle mr-3"></span> Listar o monitoramento de entregas</a>
-            </li>
-            <li>
-                <a href="/ocave/windows/estatisticaFiltradaMonitoramentoEntregas.php"><span class="fa fa-circle mr-3"></span> Estatísticas  do monitoramento de entregas</a>
-            </li>
+            <!-- --- -->
             <li>
                 <a href="/ocave/windows/monitoramentoDeVendas.php"><span class="fa fa-circle mr-3"></span>
                 Prospecção de clientes</a>
@@ -57,7 +72,7 @@
 </nav>
 
 <style>
-    nav a {
-        text-decoration: none;
-    }
+a {
+    text-decoration: none;
+}
 </style>
