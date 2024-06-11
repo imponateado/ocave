@@ -51,7 +51,6 @@
               <td>${item.IDCLIENTE}</td>
               <td>${item.CODINTERNO}</td>
               <td>${item.nomeContato}</td>
-              <td>${item.TEL_CONT}</td>
               <td>${item.semContato}</td>
               <td>${item.questionarioEntregas}</td>
               <td>${item.alerta}</td>
