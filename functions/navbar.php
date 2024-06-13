@@ -56,6 +56,10 @@
                 <a href="/ocave/windows/suggestions.php"><span class="fa fa-circle mr-3"></span>
                 Sugestões, reclamações, elogios...</a>
             </li>
+            <li>
+                <a href="/ocave/windows/reposicao.php"><span class="fa fa-circle mr-3"></span>
+                Inserir reposição</a>
+            </li>
         </ul>
 
         <div class="footer">
