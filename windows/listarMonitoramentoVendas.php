@@ -16,8 +16,8 @@
         </div>
     </div>
 
-    <script>function
-            onButtonClick() {
+    <script>
+        function onButtonClick() {
             document.getElementById('responseContent').innerHTML = '<div class="loader"></div>';
 
             const codCliente = document.getElementById('codCliente').value;
@@ -46,7 +46,7 @@
 
                     var hstTable = `<table class="table"><thead><tr><td>Código do cliente</td><td>Data</td><td>Vendedor</td><td>Contato</td><td>Preços (Ordem: Pronta-entrega Incolor e Fumê, Engenharia Incolor e Fumê)</td><td>Fornecedor</td><td>Ação</td><td>Fantasma</td><td>Representante</td><td>Referência</td><td>Obs Cliente</td><td>Obs Vendedor</td><td>Cliente não atendeu</td></tr></thead><tbody>`;
 
-                    content.forEach(item => {                   
+                    content.forEach(item => {
                         hstTable += `
                         <tr>
                             <td>${item.codigo}</td>
@@ -58,7 +58,7 @@
                             <td>${item.acao}</td>
                             <td>${item.fantasma ? "🟥" : "⬜"}</td>
                             <td>${item.representante ? "🟥" : "⬜"}</td>
-                            <td>${item.referencia ? item.referencia : "Cliente não deu referência do local" }</td>
+                            <td>${item.referencia ? item.referencia : "Cliente não deu referência do local"}</td>
                             <td>${item.obsCliente ? item.obsCliente : "Cliente não tem observação"}</td>
                             <td>${item.obsVendedor}</td>
                             <td>${item.clienteNaoAtendeu ? "🟥" : "🟩"}</td>
