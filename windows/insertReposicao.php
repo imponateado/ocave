@@ -13,19 +13,17 @@
             <span class="col-1">
               <div class="input-group input-group-sm mb-3">
                 <!-- código reposição -->
-                  <div class="border border-2 rounded m-1 p-2">
-                    <div><strong>Código de reposição</strong></div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="repoOptions" id="16"
-                        value="16">
-                      <label class="form-check-label" for="16">16</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="repoOptions" id="15"
-                        value="15">
-                      <label class="form-check-label" for="15">15</label>
-                    </div>
+                <div class="border border-2 rounded m-1 p-2">
+                  <div><strong>Código de reposição</strong></div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="repoOptions" id="16" value="16">
+                    <label class="form-check-label" for="16">16 (Rota)</label>
                   </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="repoOptions" id="15" value="15">
+                    <label class="form-check-label" for="15">15 (Balcão)</label>
+                  </div>
+                </div>
 
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-sm">Número do pedido</span>
@@ -38,6 +36,7 @@
               <div class="input-group mb-3">
                 <select class="custom-select" id="sector">
                   <option selected>Escolha um departamento</option>
+                  <option value="cliente">Cliente</option>
                   <option value="vendedor">Vendedor</option>
                   <option value="recepcao">Recepção</option>
                   <option value="gerenciaVendas">Gerência de Vendas</option>
@@ -98,7 +97,7 @@
                 <input type="text" class="form-control" aria-label="Default"
                   aria-describedby="inputGroup-sizing-default" id="height">
               </div>
-              
+
               <!-- Combined Radio Button Groups -->
               <div class="mb-3 d-flex justify-content-between">
                 <!-- Tipo: Porta/Janela/Box/Molde/Outro -->
@@ -224,15 +223,15 @@
                 <div class="border border-2 rounded m-1 p-2">
                   <div><strong>Autorização:</strong></div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="certBy" id="autorizado" value="pivotante">
+                    <input class="form-check-input" type="radio" name="certBy" id="autorizado" value="autorizado">
                     <label class="form-check-label" for="autorizado">Autorizado</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="certBy" id="naoAutorizado" value="deCorrer">
+                    <input class="form-check-input" type="radio" name="certBy" id="naoAutorizado" value="naoAutorizado">
                     <label class="form-check-label" for="naoAutorizado">Não autorizado</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="certBy" id="autorizadoSuperior" value="deCorrer">
+                    <input class="form-check-input" type="radio" name="certBy" id="autorizadoSuperior" value="autorizadoSuperior">
                     <label class="form-check-label" for="autorizadoSuperior">Autorizado pelo Wesley</label>
                   </div>
                 </div>
@@ -251,19 +250,78 @@
           <button type="button" class="btn btn-success" onclick="insertNewRegister()">Adicionar cadastro</button>
           <button type of_button="button" class="btn btn-success" onclick="insertNewClient();">Novo cliente</button>
         </span>
+        <span class="col01">
+          <textarea id="copyText" style="width:100%; height:100px;"></textarea>
+          <button id="generateAndRedirect" class="btn btn-primary" onclick="generateAndRedirect()">Gerar e Redirecionar</button>
+        </span>
         </p>
       </div>
     </div>
   </div>
-  <script>
+  <script>function generateAndRedirect() {
+  const repoOption = document.querySelector('input[name="repoOptions"]:checked')?.value;
+  const numPed = document.getElementById('numPed').value;
+  const sector = document.getElementById('sector').value;
+  const issue = document.getElementById('issue').value;
+  const qtd = document.getElementById('qtd').value;
+  const width = document.getElementById('width').value;
+  const height = document.getElementById('height').value;
+  const typeOptions = document.querySelector('input[name="typeOptions"]:checked')?.value;
+  const configurationOptions = document.querySelector('input[name="configurationOptions"]:checked')?.value;
+  const thickOptions = document.querySelector('input[name="thicknessOptions"]:checked')?.value;
+  const colourOptions = document.querySelector('input[name="colourOptions"]:checked')?.value;
+  const certBy = document.querySelector('input[name="certBy"]:checked')?.value;
+  const observacao = document.getElementById('observacao').value;
+
+  let textToCopy = `Pedido: ${numPed}\nDepartamento: ${sector}\nProblema: ${issue}\nQuantidade: ${qtd}\nLargura: ${width}\nAltura: ${height}\nTipo: ${typeOptions}\nConfiguração: ${configurationOptions}\nEspessura: ${thickOptions}\nCor: ${colourOptions}\nCertificação: ${certBy}\nObservações: ${observacao}`;
+
+  let copyText = document.getElementById('copyText');
+  copyText.value = textToCopy;
+  copyText.select();
+  document.execCommand('copy');
+
+  alert('Texto copiado! Cole no próximo site.');
+  
+  // Redirecionando o usuário
+  window.open(`https://192.168.20.10:20085/Cadastros/CadSugestaoCliente.aspx?idPedido=${numPed}`, '_blank');
+}
+
     let baseUrl = window.location.protocol + '//' + window.location.hostname;
     if (window.location.port) {
       baseUrl += ':' + window.location.port;
     }
-    let url = `${baseUrl}/path/to/your/api?codCliente=${codCliente}&numPed=${numPed}&sector=${sector}&observacao=${observacao}`;
+    function clearFields(excludeRepoAndNumPed = false) {
+  // Não limpa se a flag excludeRepoAndNumPed é verdadeira
+  if (!excludeRepoAndNumPed) {
+    document.getElementById('numPed').value = '';
+  }
+
+  document.getElementById('sector').value = '';
+  document.getElementById('issue').value = '';
+  document.getElementById('qtd').value = '';
+  document.getElementById('width').value = '';
+  document.getElementById('height').value = '';
+  document.querySelectorAll('input[type="radio"]').forEach(input => {
+    input.checked = false;
+  });
+  document.getElementById('observacao').value = '';
+}
+
+function insertNewRegister() {
+  // (Código existente permanece aqui)
+
+  clearFields(true); // Chama a função clearFields com excludeRepoAndNumPed como true
+}
+
+function insertNewClient() {
+  // (Código existente permanece aqui)
+
+  clearFields(); // Chama a função clearFields sem argumentos para limpar todos os campos
+}
+
 
     function insertNewRegister() {
-      const codCliente = document.getElementById('codCliente').value;
+      const repoOption = document.querySelector('input[name="repoOption"]:checked')?.value;
       const numPed = document.getElementById('numPed').value;
       const sector = document.getElementById('sector').value;
       const issue = document.getElementById('issue').value;
@@ -273,7 +331,6 @@
       const typeOptions = document.querySelector('input[name="typeOptions"]:checked')?.value;
       const configurationOptions = document.querySelector('input[name="configurationOptions"]:checked')?.value;
       const thickOptions = document.querySelector('input[name="thicknessOptions"]:checked')?.value;
-      const openingOptions = document.querySelector('input[name="openingOptions"]:checked')?.value;
       const colourOptions = document.querySelector('input[name="colourOptions"]:checked')?.value;
       const certBy = document.querySelector('input[name="certBy"]:checked')?.value;
       const observacao = document.getElementById('observacao').value;
@@ -281,7 +338,7 @@
       let url = `${baseUrl}/ocave/backend/insertReposicao.php`;
 
       const data = {
-        codCliente,
+        repoOption,
         numPed,
         sector,
         issue,
@@ -291,7 +348,6 @@
         typeOptions,
         configurationOptions,
         thickOptions,
-        openingOptions,
         colourOptions,
         certBy,
         observacao
@@ -304,19 +360,21 @@
         },
         body: JSON.stringify(data)
       })
-      .then(res => res.text())
-      .then(data =>{ 
-        window.alert(data);
-      })
-      .catch(err => {
-        window.alert("Um erro foi encontrado, pressione F12 e clique em console para ver o erro");
-        console.log(err);
-      })
+        .then(res => res.text())
+        .then(data => {
+          window.alert(data);
+        })
+        .catch(err => {
+          window.alert("Um erro foi encontrado, pressione F12 e clique em console para ver o erro");
+          console.log(err);
+        })
 
+        clearFields(true);
     }
 
     function insertNewClient() {
       insertNewRegister();
+      clearFields(false);
     }
   </script>
   <?php require '../functions/scripts.php'; ?>
