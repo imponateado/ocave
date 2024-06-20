@@ -1,6 +1,6 @@
 <?php
     $OwnHost = "127.0.0.1";
-    $OwnPort = 3307;
+    $OwnPort = 3306;
     $OwnUser = "root";
     $OwnPass = "";
     $OwnDBName = "brasiltemper";
