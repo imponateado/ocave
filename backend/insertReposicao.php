@@ -26,23 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $thick = (int) $input['thickOptions']; // Casting to integer
     $colour = sanitizeInput($input['colourOptions'], $OwnConn);
     $certBy = sanitizeInput($input['certBy'], $OwnConn);
-    $repoOptions = (int) $input['repoOption']; // Casting to integer
+    $repoOptions = (int) $input['repoOptions']; // Casting to integer
+    $isItPaid = sanitizeInput($input['isItPaid'], $OwnConn);
 
-    // Prepare an SQL statement to insert data into the database
-    $stmt = $OwnConn->prepare("INSERT INTO historicoReposicao (numPed, sector, issue, quantity, width, height, type, configuration, observacao, thick, colour, certBy, repoOptions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // Construct SQL query
+    $OwnSQL = "INSERT INTO historicoReposicao (numPed, sector, issue, quantity, width, height, type, configuration, observacao, thick, colour, certBy, repoOptions, isItPaid) VALUES ('$numPed', '$sector', '$issue', $quantity, $width, $height, '$type', '$configuration', '$observacao', $thick, '$colour', '$certBy', $repoOptions, '$isItPaid')";
 
-    // Bind parameters to the SQL statement. Ensure the string of types matches the number of variables and their respective types.
-    $stmt->bind_param("sssddssssissi", $numPed, $sector, $issue, $quantity, $width, $height, $type, $configuration, $observacao, $thick, $colour, $certBy, $repoOptions);
-
-    // Execute the statement
-    if ($stmt->execute()) {
+    // Execute the query
+    if ($OwnConn->query($OwnSQL) === TRUE) {
         echo "Registrado com sucesso";
     } else {
-        echo "Erro: " . $stmt->error;
+        echo "Erro: " . $OwnConn->error;
     }
 
-    // Close statement and connection
-    $stmt->close();
+    // Close connection
     $OwnConn->close();
 } else {
     echo "Método de requisição inválido.";
