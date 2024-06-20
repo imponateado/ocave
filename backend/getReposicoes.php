@@ -1,117 +1,80 @@
 <?php
-// Capture POST data
-$startDate = $_POST['startDate'] ?? null;
 
-$endDate = $_POST['endDate'] ?? null;
+header("Content-Type: application/json");
 
-if ($endDate) {
-    // Add one day to the end date
-    $endDate = date('Y-m-d', strtotime($endDate . ' +1 day'));
-}
+require '../functions/makeSqlConnectionToOwn.php'; // This imports your mysqli connection
 
+$input = json_decode(file_get_contents("php://input"), true);
 
-$codRep = $_POST['codRep'] ?? null;
-$numped = $_POST['numped'] ?? null;
-$type = $_POST['type'] ?? null;
-$configuration = $_POST['configuration'] ?? null;
-$thick = $_POST['thick'] ?? null;
-$colour = $_POST['colour'] ?? null;
-$sector = $_POST['sector'] ?? null;
-$issue = $_POST['issue'] ?? null;
+// Extract values from input, using null coalescing operator to handle absent keys
+$numPed = $input['numPed'] ?? null;
+$sector = $input['sector'] ?? null;
+$issue = $input['issue'] ?? null;
+$type = $input['type'] ?? null;
+$configuration = $input['configuration'] ?? null;
+$thick = $input['thick'] ?? null;
+$colour = $input['colour'] ?? null;
 
-// Include the database connection
-require '../functions/makeSqlConnectionToOwn.php';
+$conditions = [];
+$params = [];
+$types = '';
 
-// Begin constructing the SQL query
-$OwnSQL = "SELECT * FROM historicoReposicao WHERE 1 = 1"; // Changed to always have a WHERE clause
-
-// Append conditions based on provided POST data
-if ($startDate && $endDate) {
-    $OwnSQL .= " AND created_at BETWEEN ? AND ?";
-    $params[] = $startDate;
-    $params[] = $endDate;  // Now includes the additional day
-} else {
-    if ($startDate) {
-        $OwnSQL .= " AND created_at >= ?";
-        $params[] = $startDate;
-    }
-    if ($endDate) {
-        $OwnSQL .= " AND created_at <= ?";
-        $params[] = $endDate;  // Now includes the additional day
-    }
-}
-
-if ($codRep) {
-    $OwnSQL .= " AND codRep = ?";
-}
-if ($numped) {
-    $OwnSQL .= " AND numped = ?";
-}
-if ($type) {
-    $OwnSQL .= " AND type = ?";
-}
-if ($configuration) {
-    $OwnSQL .= " AND configuration = ?";
-}
-if ($thick) {
-    $OwnSQL .= " AND thick = ?";
-}
-if ($colour) {
-    $OwnSQL .= " AND colour = ?";
+// Build the SQL query based on non-null input parameters
+if ($numPed) {
+    $conditions[] = 'numPed = ?';
+    $params[] = $numPed;
+    $types .= 's';
 }
 if ($sector) {
-    $OwnSQL .= " AND sector = ?";
+    $conditions[] = 'sector = ?';
+    $params[] = $sector;
+    $types .= 's';
 }
 if ($issue) {
-    $OwnSQL .= " AND issue = ?";
+    $conditions[] = 'issue = ?';
+    $params[] = $issue;
+    $types .= 's';
+}
+if ($type) {
+    $conditions[] = 'type = ?';
+    $params[] = $type;
+    $types .= 's';
+}
+if ($configuration) {
+    $conditions[] = 'configuration = ?';
+    $params[] = $configuration;
+    $types .= 's';
+}
+if ($thick !== null) { // checking explicitly for null because it's an integer
+    $conditions[] = 'thick = ?';
+    $params[] = $thick;
+    $types .= 'i';
+}
+if ($colour) {
+    $conditions[] = 'colour = ?';
+    $params[] = $colour;
+    $types .= 's';
 }
 
-// Prepare the SQL statement
-$stmt = $OwnConn->prepare($OwnSQL);
+$query = "SELECT * FROM historicoReposicao"; // use the actual table name
+if (!empty($conditions)) {
+    $query .= ' WHERE ' . implode(' AND ', $conditions);
+}
+
+$stmt = $OwnConn->prepare($query);
 
 // Bind parameters dynamically
-$params = [];
-if ($date) $params[] = $date;
-if ($codRep) $params[] = $codRep;
-if ($numped) $params[] = $numped;
-if ($type) $params[] = $type;
-if ($configuration) $params[] = $configuration;
-if ($thick) $params[] = $thick;
-if ($colour) $params[] = $colour;
-if ($sector) $params[] = $sector;
-if ($issue) $params[] = $issue;
-
-// Execute the statement
-$stmt->execute($params);
-
-// Check for mysqlnd
-if (method_exists($stmt, 'get_result')) {
-    $result = $stmt->get_result();
-    $results = $result->fetch_all(MYSQLI_ASSOC);
-} else {
-    // Fallback if mysqlnd is not available
-    $results = [];
-    $stmt->store_result();
-    $variables = [];
-    $data = [];
-    $meta = $stmt->result_metadata();
-    while ($field = $meta->fetch_field()) {
-        $variables[] = &$data[$field->name]; // Pass by reference
-    }
-    call_user_func_array([$stmt, 'bind_result'], $variables);
-    while ($stmt->fetch()) {
-        $results[] = [];
-        foreach($data as $k => $v)
-            $results[array_key_last($results)][$k] = $v;
-    }
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
 }
 
-// Convert data to JSON format
-$jsonData = json_encode($results);
+$stmt->execute();
+$result = $stmt->get_result();
+$results = $result->fetch_all(MYSQLI_ASSOC);
 
-// Set Content-Type header to application/json for proper client handling
-header('Content-Type: application/json');
+echo json_encode($results);
 
-// Output the JSON data
-echo $jsonData;
+$stmt->close();
+$OwnConn->close();
+
 ?>
