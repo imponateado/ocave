@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="p-4">
-        <h1><a href="/ocave/index.php" class="logo">Ocave <span>Consulta ligações</span></a></h1>
+        <h1><a href="/ocave/index.php" class="logo">Ocave <span><i>Pau pra toda obra</i></span></a></h1>
         <ul class="list-unstyled components mb-5">
             <!-- --- -->
              <li>
@@ -59,6 +59,10 @@
             <li>
                 <a href="/ocave/windows/insertReposicao.php"><span class="fa fa-circle mr-3"></span>
                 Inserir reposição</a>
+            </li>
+            <li>
+                <a href="/ocave/windows/getReposicoes.php"><span class="fa fa-circle mr-3"></span>
+                Listar as reposições</a>
             </li>
         </ul>
 
