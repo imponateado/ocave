@@ -83,9 +83,16 @@
 
                         reposicoesData = dados;
 
+                        let totalLines = dados.length;
+                        let totalQuantity = 0;
+                        let totalSquareMeters = 0;
+
                         let table = '<table class="table"><thead><tr><td>Número do pedido</td><td>Setor</td><td>Problema</td><td>Quantidade</td><td>Largura</td><td>Altura</td><td>Tipo</td><td>Configuração</td><td>Observação</td><td>Data</td><td>Espessura</td><td>Cor</td><td>Autorizado</td><td>Código da reposição</td><td>Status do pagamento</td></tr></thead>';
 
                         dados.forEach(item => {
+                            totalQuantity += parseInt(item.quantity);
+                            totalSquareMeters += (parseFloat(item.width) * parseFloat(item.height));
+
                             table += `
 <tr>
 <td>${item.numPed}</td>
@@ -109,12 +116,17 @@
 
                         table += '</tbody></table>';
 
+                        table += `
+                            <div>Número de pedidos: ${totalLines}</div>
+                            <div>Quantidade de peças: ${totalQuantity}</div>
+                            <div>Área total: ${totalSquareMeters.toFixed(2) / 1000000 + " m²"}</div>
+                        `;
+
                         document.getElementById('ReposicaoPlaceholder').innerHTML = table;
-                        console.log(dados);
 
                     } else {
                         let table = '<table class="table"><thead><tr><td>Aviso</td></tr></thead><tbody><tr><td>Nenhum item encontrado.</td></tr></tbody></table>';
-                        document.getElementsByClassName('ReposicaoPlaceholder').innerHTML = table;
+                        document.getElementById('ReposicaoPlaceholder').innerHTML = table;
                     }
                 })
                 .catch(err => {
