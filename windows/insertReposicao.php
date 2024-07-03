@@ -34,6 +34,7 @@
 
               <?php require '../functions/deps.php' ?>
               <?php require '../functions/issues.php'; ?>
+
               <!-- Input group for quantity, width, and height -->
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -56,11 +57,11 @@
               <!-- Combined Radio Button Groups -->
               <div class="mb-3 d-flex justify-content-between">
 
-                <?php 
-                  require '../functions/type.php';
-                  require '../functions/setting.php';
-                  require '../functions/thickness.php';
-                  require '../functions/colour.php';
+                <?php
+                require '../functions/type.php';
+                require '../functions/setting.php';
+                require '../functions/thickness.php';
+                require '../functions/colour.php';
                 ?>
 
 
@@ -107,7 +108,9 @@
         </div>
         </span>
         <span class="col01">
-          <button id="generateAndRedirect" class="btn btn-primary" onclick="generateAndRedirect()">Gerar e Redirecionar</button>
+          <button id="generateAndRedirect" class="btn btn-primary" onclick="generateAndRedirect()">Gerar e
+            Redirecionar</button>
+            <button id="clearFields" class="btn btn-secondary" onclick="clearAllFields()">Limpar Campos</button>
           <textarea id="copyText" style="width:100%; height:100px;"></textarea>
         </span>
         </p>
@@ -119,6 +122,22 @@
     let baseUrl = window.location.protocol + '//' + window.location.hostname;
     if (window.location.port) {
       baseUrl += ':' + window.location.port;
+    }
+
+    function clearAllFields() {
+      const textInputs = document.querySelectorAll('input[type="text"]');
+      textInputs.forEach(input => input.value = '');
+
+      const radioInputs = document.querySelectorAll('input[type="radio"]');
+      radioInputs.forEach(input => input.checked = false);
+
+      const selects = document.querySelectorAll('select');
+      selects.forEach(select => select.selectedIndex = 0);
+
+      document.getElementById('observacao').value = '';
+      document.getElementById('copyText').value = '';
+
+      document.getElementById('numPed').value = '';
     }
 
     function generateAndRedirect() {
