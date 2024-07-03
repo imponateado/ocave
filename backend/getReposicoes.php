@@ -7,22 +7,24 @@ require '../functions/makeSqlConnectionToOwn.php'; // This imports your mysqli c
 $input = json_decode(file_get_contents("php://input"), true);
 
 // Extract values from input, using null coalescing operator to handle absent keys
-$numPed = $input['numPed'] ?? null;
+$startDate = $input['startDate'] ?? null;
+$endDate = $input['endDate'] ?? null;
+$repoOptions = $input['codRep'] ?? null;
 $sector = $input['sector'] ?? null;
 $issue = $input['issue'] ?? null;
-$type = $input['type'] ?? null;
-$configuration = $input['configuration'] ?? null;
-$thick = $input['thick'] ?? null;
-$colour = $input['colour'] ?? null;
+$type = $input['typeOptions'] ?? null;
+$configuration = $input['configurationOptions'] ?? null;
+$thick = $input['thicknessOptions'] ?? null;
+$colour = $input['colourOptions'] ?? null;
 
 $conditions = [];
 $params = [];
 $types = '';
 
 // Build the SQL query based on non-null input parameters
-if ($numPed) {
-    $conditions[] = 'numPed = ?';
-    $params[] = $numPed;
+if ($repoOptions) {
+    $conditions[] = 'repoOptions = ?';
+    $params[] = $repoOptions;
     $types .= 's';
 }
 if ($sector) {
@@ -56,10 +58,29 @@ if ($colour) {
     $types .= 's';
 }
 
+if ($startDate && $endDate) {
+    $conditions[] = 'created_at BETWEEN ? AND ?';
+    $params[] = $startDate;
+    $params[] = $endDate;
+    $types .= 'ss';
+} elseif ($startDate) {
+    $conditions[] = 'created_at >= ?';
+    $params[] = $startDate;
+    $types .= 's';
+} elseif ($endDate) {
+    $conditions[] = 'created_at <= ?';
+    $params[] = $endDate;
+    $types .= 's';
+}
+
 $query = "SELECT * FROM historicoReposicao"; // use the actual table name
 if (!empty($conditions)) {
     $query .= ' WHERE ' . implode(' AND ', $conditions);
 }
+
+// Debugging: Log the query and parameters
+error_log("SQL Query: $query");
+error_log("Parameters: " . json_encode($params));
 
 $stmt = $OwnConn->prepare($query);
 

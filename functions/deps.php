@@ -1,7 +1,7 @@
 <!-- New Select for Department -->
 <div class="input-group mb-3">
     <select class="custom-select" id="sector">
-        <option selected>Escolha um departamento</option>
+        <option selected value="">Escolha um departamento</option>
         <option value="espelho">Espelho</option>
         <option value="furacao">Furação</option>
         <option value="cliente">Cliente</option>

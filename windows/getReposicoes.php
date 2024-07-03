@@ -23,10 +23,6 @@
                     <label for="16">16</label> <input type="radio" value="16" id="16" name="codRep">
                 </span>
 
-                <span class="border rounded m-3 p-3">
-                    Número do pedido: <input type="text" id="numped">
-                </span>
-
                 <?php
                 require '../functions/type.php';
                 require '../functions/setting.php';
@@ -61,7 +57,6 @@
             const startDate = document.getElementById('startDate').value;
             const endDate = document.getElementById('endDate').value;
             const codRep = document.querySelector('input[name="codRep"]:checked')?.value;
-            const numped = document.getElementById('numped').value;
             const typeOptions = document.querySelector('input[name="typeOptions"]:checked')?.value;
             const configurationOptions = document.querySelector('input[name="configurationOptions"]:checked')?.value;
             const thicknessOptions = document.querySelector('input[name="thicknessOptions"]:checked')?.value;
@@ -72,7 +67,7 @@
             let url = `${baseUrl}/ocave/backend/getReposicoes.php`;
 
             const dados = {
-                startDate, endDate, codRep, numped, typeOptions, configurationOptions, thicknessOptions, colourOptions, sector, issue
+                startDate, endDate, codRep, typeOptions, configurationOptions, thicknessOptions, colourOptions, sector, issue
             };
 
             fetch(url, {
@@ -115,13 +110,11 @@
                         table += '</tbody></table>';
 
                         document.getElementById('ReposicaoPlaceholder').innerHTML = table;
-                        document.getElementById('generatePDFBtn').style.display = 'inline-block';
                         console.log(dados);
 
                     } else {
                         let table = '<table class="table"><thead><tr><td>Aviso</td></tr></thead><tbody><tr><td>Nenhum item encontrado.</td></tr></tbody></table>';
                         document.getElementsByClassName('ReposicaoPlaceholder').innerHTML = table;
-                        document.getElementById('generatePDFBtn').style.display = 'none';
                     }
                 })
                 .catch(err => {
@@ -137,13 +130,10 @@
             const radioInputs = document.querySelectorAll('input[type="radio"]');
             radioInputs.forEach(input => input.checked = false);
 
-            document.getElementById('numped').value = '';
-
             const selects = document.querySelectorAll('select');
             selects.forEach(select => select.selectedIndex = 0);
 
             document.getElementById('ReposicaoPlaceholder').innerHTML = '';
-            document.getElementById('generatePDFBtn').style.display = 'none';
 
             reposicoesData = [];
         }
