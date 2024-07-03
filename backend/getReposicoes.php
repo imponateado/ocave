@@ -16,6 +16,7 @@ $type = $input['typeOptions'] ?? null;
 $configuration = $input['configurationOptions'] ?? null;
 $thick = $input['thicknessOptions'] ?? null;
 $colour = $input['colourOptions'] ?? null;
+$certBy = $input['padraoEngenharia'] ?? null;
 
 $conditions = [];
 $params = [];
@@ -70,6 +71,12 @@ if ($startDate && $endDate) {
 } elseif ($endDate) {
     $conditions[] = 'created_at <= ?';
     $params[] = $endDate;
+    $types .= 's';
+}
+
+if ($certBy) {
+    $conditions[] = 'certBy = ?';
+    $params[] = $certBy;
     $types .= 's';
 }
 

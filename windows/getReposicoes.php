@@ -27,8 +27,9 @@
                 require '../functions/type.php';
                 require '../functions/setting.php';
                 require '../functions/thickness.php';
-                require '../functions/colour.php'
-                    ?>
+                require '../functions/colour.php';
+                require '../functions/padraoEngenharia.php';
+                ?>
             </div>
 
             <?php
@@ -63,11 +64,12 @@
             const colourOptions = document.querySelector('input[name="colourOptions"]:checked')?.value;
             const sector = document.getElementById('sector').value;
             const issue = document.getElementById('issue').value;
+            const padraoEngenharia = document.querySelector('input[name="certBy"]:checked')?.value;
 
             let url = `${baseUrl}/ocave/backend/getReposicoes.php`;
 
             const dados = {
-                startDate, endDate, codRep, typeOptions, configurationOptions, thicknessOptions, colourOptions, sector, issue
+                startDate, endDate, codRep, typeOptions, configurationOptions, thicknessOptions, colourOptions, sector, issue, padraoEngenharia
             };
 
             fetch(url, {
@@ -87,7 +89,7 @@
                         let totalQuantity = 0;
                         let totalSquareMeters = 0;
 
-                        let table = '<table class="table"><thead><tr><td>Número do pedido</td><td>Setor</td><td>Problema</td><td>Quantidade</td><td>Largura</td><td>Altura</td><td>Tipo</td><td>Configuração</td><td>Observação</td><td>Data</td><td>Espessura</td><td>Cor</td><td>Autorizado</td><td>Código da reposição</td><td>Status do pagamento</td></tr></thead>';
+                        let table = '<table class="table"><thead><tr><td>Número do pedido</td><td>Setor</td><td>Problema</td><td>Quantidade</td><td>Padrão/Engenharia</td><td>Largura</td><td>Altura</td><td>Tipo</td><td>Configuração</td><td>Observação</td><td>Data</td><td>Espessura</td><td>Cor</td><td>Autorizado</td><td>Código da reposição</td><td>Status do pagamento</td></tr></thead>';
 
                         dados.forEach(item => {
                             totalQuantity += parseInt(item.quantity);
@@ -99,6 +101,7 @@
 <td>${item.sector}</td>
 <td>${item.issue}</td>
 <td>${item.quantity}</td>
+<td>${item.certBy}</td>
 <td>${item.width}</td>
 <td>${item.height}</td>
 <td>${item.type}</td>
@@ -119,7 +122,7 @@
                         table += `
                             <div>Número de pedidos: ${totalLines}</div>
                             <div>Quantidade de peças: ${totalQuantity}</div>
-                            <div>Área total: ${totalSquareMeters.toFixed(2) / 1000000 + " m²"}</div>
+                            <div>Área total: ${(totalSquareMeters / 1000000).toFixed(2) + " m²"}</div>
                         `;
 
                         document.getElementById('ReposicaoPlaceholder').innerHTML = table;

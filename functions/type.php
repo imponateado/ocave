@@ -23,10 +23,10 @@
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="typeOptions" id="typeEspelho" value="espelho">
-        <label class="form-check-label" for="typeEspelho">Outro</label>
+        <label class="form-check-label" for="typeEspelho">Espelho</label>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="typeOptions" id="typeLaminado" value="laminado">
-        <label class="form-check-label" for="typeLaminado">Outro</label>
+        <label class="form-check-label" for="typeLaminado">Laminado</label>
     </div>
 </div>

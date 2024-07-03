@@ -6,12 +6,10 @@
         <option value="furacao">Furação</option>
         <option value="cliente">Cliente</option>
         <option value="vendedor">Vendedor</option>
-        <option value="recepcao">Recepção</option>
-        <option value="gerenciaVendas">Gerência de Vendas</option>
-        <option value="gerenciaPCP">Gerência de PCP</option>
+        <option value="gerenciaVendas">Vendas</option>
+        <option value="gerenciaPCP">PCP</option>
         <option value="otimizacao">Otimização</option>
         <option value="conferencia">Conferência</option>
-        <option value="projecao">Projeção</option>
         <option value="corte">Corte</option>
         <option value="lapidacao">Lapidação</option>
         <option value="marcacao">Marcação</option>

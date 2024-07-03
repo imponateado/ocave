@@ -64,25 +64,7 @@
                 require '../functions/colour.php';
                 ?>
 
-
-
-                <!-- Autorização -->
-                <div class="border border-2 rounded m-1 p-2">
-                  <div><strong>Autorização:</strong></div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="certBy" id="autorizado" value="autorizado">
-                    <label class="form-check-label" for="autorizado">Autorizado</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="certBy" id="naoAutorizado" value="naoAutorizado">
-                    <label class="form-check-label" for="naoAutorizado">Não autorizado</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="certBy" id="autorizadoSuperior"
-                      value="autorizadoSuperior">
-                    <label class="form-check-label" for="autorizadoSuperior">Autorizado pelo Wesley</label>
-                  </div>
-                </div>
+                <?php require '../functions/padraoEngenharia.php'; ?>
 
                 <!-- Reposição paga -->
                 <div class="border border-2 rounded m-1 p-2">
