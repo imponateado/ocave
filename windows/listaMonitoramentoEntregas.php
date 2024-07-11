@@ -8,7 +8,7 @@
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
       <div class="filterItself">
-        <?php require '../functions/startAndEndDate.php'  ?>
+        <?php require '../functions/startAndEndDate.php' ?>
 
         <?php require '../functions/getRotaListHTML.php' ?>
 
@@ -26,6 +26,18 @@
     let baseUrl = window.location.protocol + '//' + window.location.hostname;
     if (window.location.port) {
       baseUrl += ':' + window.location.port;
+    }
+
+    function formatarString(questEntr) {
+      let comEspacos = questEntr.replace(/([A-Z])/g, ' $1');
+
+      let arrayDeStrings = comEspacos.split(',');
+
+      let arrayFormatado = arrayDeStrings.map(item =>
+        item.trim().charAt(0).toUpperCase() + item.trim().slice(1)
+      );
+
+      return arrayFormatado.join(', ');
     }
 
     function triggerFilter() {
@@ -52,7 +64,7 @@
               <td>${item.IDROTA}</td>
               <td>${item.nomeContato}</td>
               <td>${item.semContato === 'false' ? "⬜" : "🟩"}</td>
-              <td>${item.questionarioEntregas}</td>
+              <td>${formatarString(item.questionarioEntregas)}</td>
               <td>${item.alerta === 'true' ? "🟥" : "⬜"}</td>
               <td>${item.observacao}</td>
               <td>${item.data}</td>
