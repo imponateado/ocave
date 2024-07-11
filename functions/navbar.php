@@ -44,6 +44,12 @@
                 <a href="/ocave/windows/controleDeViagem.php"><span class="fa fa-circle mr-3"></span>
                 Controle de viagem</a>
             </li>
+            
+            <li>
+                        <a href="/ocave/windows/getLancamentoPIX.php">
+                            <span class="fa fa-circle mr-3"></span>
+                            Buscar lançamento PIX</a>
+                    </li>
             <li>
                 <a href="/ocave/windows/gerarTabelaOC.php"><span class="fa fa-circle mr-3"></span>
                 Gerar tabela de ordens de carregamento</a>
