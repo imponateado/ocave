@@ -8,8 +8,7 @@
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
       <div class="filterItself">
-        Data inicial: <input type="date" id="startDate">
-        Data final: <input type="date" id="endDate">
+        <?php require '../functions/startAndEndDate.php'  ?>
 
         <?php require '../functions/getRotaListHTML.php' ?>
 

@@ -1,43 +1,47 @@
 <!doctype html>
 <html lang="pt-br">
-    <?php require '../functions/head.php'; ?>
+<?php require '../functions/head.php'; ?>
 
-    <body>
-        <div class="wrapper d-flex align-items-stretch">
-            <?php require '../functions/navbar.php'; ?>
-            <!-- Page Content  -->
-            <div id="content" class="p-4 p-md-5 pt-5">
-                Data inicial: <input type="date" id="startDate">
-                Data final: <input type="date" id="endDate">
-                Rota: <select name="rota" id="rota">
-                    <option value="">Selecione uma rota</option>
-                </select>
-                Cliente: <input type="text" id="codCliente">
-                Cidade: <input type="text" id="cidade">
-                <button class="btn btn-success" onclick="onButtonClick()">Consultar</button>
-                <div id="responseContent"></div>
-            </div>
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        <?php require '../functions/navbar.php'; ?>
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <?php require '../functions/startAndEndDate.php'  ?>
+
+            <?php require '../functions/getRotaListHTML.php' ?>
+
+            Cliente: <input type="text" id="codCliente">
+            Cidade: <input type="text" id="cidade">
+            <button class="btn btn-success" onclick="onButtonClick()">Consultar</button>
+            <div id="responseContent"></div>
         </div>
+    </div>
 
-        <script>
-            function onButtonClick() {
-                document.getElementById('responseContent').innerHTML = '<div class="loader"></div>';
+    <script>
 
-                const startDate = document.getElementById('startDate').value;
-                const endDate = document.getElementById('endDate').value;
-                const rota = document.getElementById('rota').value;
-                const codCliente = document.getElementById('codCliente').value;
-                const cidade = document.getElementById('cidade').value;
+        let baseUrl = window.location.protocol + '//' + window.location.hostname;
+        if (window.location.port) {
+            baseUrl += ':' + window.location.port;
+        }
 
-                let baseUrl = window.location.protocol + '//' + window.location.hostname;
-                if (window.location.port) {
-                    baseUrl += ':' + window.location.port;
-                }
-                let url = `${baseUrl}/ocave/backend/getControlesDeViagem.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}&codCliente=${codCliente}&cidade=${cidade}`;
+        <?php require '../functions/getRotaListHTMLscript.php' ?>
 
-                fetch(url)
+        function onButtonClick() {
+            document.getElementById('responseContent').innerHTML = '<div class="loader"></div>';
+
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const rota = document.getElementById('rota').value;
+            const codCliente = document.getElementById('codCliente').value;
+            const cidade = document.getElementById('cidade').value;
+
+
+            let url = `${baseUrl}/ocave/backend/getControlesDeViagem.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}&codCliente=${codCliente}&cidade=${cidade}`;
+
+            fetch(url)
                 .then(res => {
-                    if(res.ok) {
+                    if (res.ok) {
                         return res.json();
                     }
                 })
@@ -87,9 +91,10 @@
                     window.alert("Um erro ocorreu, aperte F12 para ver");
                     console.log(err);
                 })
-            }
-        </script>
+        }
+    </script>
 
-        <?php require '../functions/scripts.php'; ?>
-    </body>
+    <?php require '../functions/scripts.php'; ?>
+</body>
+
 </html>

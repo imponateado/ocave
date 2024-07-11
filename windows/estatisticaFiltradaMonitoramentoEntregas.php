@@ -15,11 +15,10 @@ require '../functions/head.php';
 			<h3>Estatística geral</h3>
 			<h6>"Dados do gráfico geral"</h6>
 
-			Data inicial: <input type="date" id="startDate">
-			Data final: <input type="date" id="endDate">
-			Rota: <select aria-label="Default select example" id="rotas">
-				<option value="noValue"></option>
-			</select>
+            <?php require '../functions/startAndEndDate.php'  ?>
+
+			<?php require '../functions/getRotaListHTML.php'  ?>
+
 			<button type="button" class="btn btn-primary" onclick="triggerFilter()">Pronto</button>
 
 			<table class="table">
@@ -201,21 +200,7 @@ require '../functions/head.php';
 
 			//volta com todas as rotas
 
-			var url = `${baseUrl}/ocave/backend/getRotaList.php`;
-			fetch(url)
-				.then(response => {
-					if (!response.ok) {
-						throw new Error('Network response was not ok');
-					}
-					return response.json();
-				})
-				.then(data => {
-					let options = '';
-					data.forEach(item => {
-						options += `<option value="${item.IDROTA}">${item.CODINTERNO} - ${item.DESCRICAO} - ${item.IDROTA}</option>`;
-						document.getElementById('rotas').innerHTML = options;
-					})
-				})
+			<?php require '../functions/getRotaListHTMLscript.php'  ?>
 
 		}
 

@@ -89,7 +89,7 @@
                         let totalQuantity = 0;
                         let totalSquareMeters = 0;
 
-                        let table = '<table class="table"><thead><tr><td>Número do pedido</td><td>Setor</td><td>Problema</td><td>Quantidade</td><td>Padrão/Engenharia</td><td>Largura</td><td>Altura</td><td>Tipo</td><td>Configuração</td><td>Observação</td><td>Data</td><td>Espessura</td><td>Cor</td><td>Autorizado</td><td>Código da reposição</td><td>Status do pagamento</td></tr></thead>';
+                        let table = '<table class="table"><thead><tr><td>Número do pedido</td><td>Setor</td><td>Problema</td><td>Quantidade</td><td>Padrão/Engenharia</td><td>Largura</td><td>Altura</td><td>Tipo</td><td>Configuração</td><td>Observação</td><td>Data</td><td>Espessura</td><td>Cor</td><td>Autorizado</td><td>Código da reposição</td></tr></thead>';
 
                         dados.forEach(item => {
                             totalQuantity += parseInt(item.quantity);
@@ -112,7 +112,6 @@
 <td>${item.colour}</td>
 <td>${item.certBy}</td>
 <td>${item.repoOptions}</td>
-<td>${item.isItPaid}</td>
 </tr>
 `;
                         })
@@ -151,6 +150,10 @@
             document.getElementById('ReposicaoPlaceholder').innerHTML = '';
 
             reposicoesData = [];
+        }
+
+        window.onload = function() {
+            getReposicoes();
         }
     </script>
 </body>
