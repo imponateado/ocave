@@ -1,0 +1,3 @@
+./backend/getLancamentoPIX.php
+./functions/makeSqlConnectionToOwn.php
+./functions/makeSqlConnectionToWG.php

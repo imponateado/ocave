@@ -138,10 +138,10 @@
       const observacao = document.getElementById('observacao').value;
       const isItPaid = document.querySelector('input[name="isItPaid"]:checked')?.value;
 
-      let textToCopy = `Pedido: ${numPed}\nDepartamento: ${sector}\nProblema: ${issue}\nQuantidade: ${qtd}\nLargura: ${width}\nAltura: ${height}\nTipo: ${typeOptions}\nConfiguração: ${configurationOptions}\nEspessura: ${thickOptions}\nCor: ${colourOptions}\nAutorização: ${certBy}\nObservações: ${observacao}\nStatus do pagamento: ${isItPaid === 'paid' ? "Pago" : "Não pago"}`;
+      let textToCopy = `Código reposição: ${repoOptions}\nPedido: ${numPed}\nDepartamento: ${sector}\nProblema: ${issue}\nQuantidade: ${qtd}\nLargura: ${width}\nAltura: ${height}\nTipo: ${typeOptions}\nConfiguração: ${configurationOptions}\nEspessura: ${thickOptions}\nCor: ${colourOptions}\nAutorização: ${certBy}\nObservações: ${observacao}\nStatus do pagamento: ${isItPaid === 'paid' ? "Pago" : "Não pago"}`;
 
       let copyText = document.getElementById('copyText');
-      copyText.value = textToCopy;
+      copyText.value = textToCopy.toUpperCase();
       copyText.select();
       document.execCommand('copy');
 
