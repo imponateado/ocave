@@ -48,7 +48,7 @@ require '../functions/head.php';
 							<!-- --------------- -->
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" id="fantasma">
-									<label class="form-check-label btn btn-danger" for="fantasma">Cliente fantasma</label>
+									<label class="form-check-label btn btn-danger" for="fantasma">Cliente não lucrativo</label>
 								</div>
 							<!-- --------------- -->
 							<!-- --------------- -->
@@ -90,15 +90,7 @@ require '../functions/head.php';
 								</div>
 							<!-- --------------- -->
 							<!-- --------------- -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="inputGroup-sizing-default">Referência de localização</span>
-									</div>
-									<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="referencia">
-								</div>
-							<!-- --------------- -->
-							<!-- --------------- -->
-								<div class="input-group mb-3">
+								<div class="input-group mb-3  d-none">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="inputGroup-sizing-default">Ação</span>
 									</div>
@@ -140,7 +132,6 @@ require '../functions/head.php';
 			const representante = document.getElementById('representante').checked ? "1" : "0";
 			const preco = document.getElementById('prontaEntregaIncolor').value + " " + document.getElementById('prontaEntregaFume').value + " " + document.getElementById('engenhariaIncolor').value + " " + document.getElementById('engenhariaFume').value;
 			const fornecedor = document.getElementById('fornecedor').value;
-			const referencia = document.getElementById('referencia').value;
 			const acao = document.getElementById('acao').value;
 			const obsCliente = document.getElementById('obsCliente').value;
 			const contato = document.getElementById('contato').value;
@@ -150,7 +141,7 @@ require '../functions/head.php';
 				if (window.location.port) {
 					baseUrl += ':' + window.location.port;
 			}
-			let url = `${baseUrl}/ocave/backend/putFormVenda.php?codigo=${clientCode}&vendedor=${vendedor}&clienteNaoAtendeu=${clienteNaoAtendeu}&fantasma=${fantasma}&representante=${representante}&preco=${preco}&fornecedor=${fornecedor}&referencia=${referencia}&acao=${acao}&obsCliente=${obsCliente}&contato=${contato}&obsVendedor=${obsVendedor}`;
+			let url = `${baseUrl}/ocave/backend/putFormVenda.php?codigo=${clientCode}&vendedor=${vendedor}&clienteNaoAtendeu=${clienteNaoAtendeu}&fantasma=${fantasma}&representante=${representante}&preco=${preco}&fornecedor=${fornecedor}&acao=${acao}&obsCliente=${obsCliente}&contato=${contato}&obsVendedor=${obsVendedor}`;
 			fetch(url)
 			.then(response => {
 				if(response.ok) {
@@ -170,7 +161,6 @@ require '../functions/head.php';
 				document.getElementById('engenhariaIncolor').value = "";
 				document.getElementById('engenhariaFume').value = "";
 				document.getElementById('fornecedor').value = "";
-				document.getElementById('referencia').value = "";
 				document.getElementById('acao').value = "";
 				document.getElementById('obsCliente').value = "";
 				document.getElementById('contato').value = "";

@@ -1,4 +1,4 @@
-<div class="card" aria-hidden="true" id="customerRecord">
+<div class="card p-3" aria-hidden="true" id="customerRecord">
   Aguardando usuário digitar um código!
 </div>
 
@@ -40,7 +40,7 @@
       fetch(url)
       .then(response => response.json())
       .then( data => {
-        let hstTable = '<table class="table"><thead class="thead-dark"><tr><th scope="col">Vendedor</th><th scope="col">Data</th><th scope="col">Obs Cliente</th><th scope="col">Cliente não atendeu?</th><th scope="col">Fantasma</th><th scope="col">Cliente muito insatisfeito?</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Referência</th><th scope="col">Ação</th><th scope="col">Contato</th><th scope="col">Obs Vendedor</th></tr></thead><tbody>';
+        let hstTable = '<table class="table"><thead class="thead-dark"><tr><th scope="col">Vendedor</th><th scope="col">Data</th><th scope="col">Obs Cliente</th><th scope="col">Cliente não atendeu?</th><th scope="col">Cliente não lucrativo</th><th scope="col">Cliente muito insatisfeito?</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Contato</th><th scope="col">Obs Vendedor</th></tr></thead><tbody>';
 
         data.slice(-3).forEach(item => {
           hstTable += `
@@ -53,7 +53,6 @@
             <td>${item.representante == "1" ? '🟥' : '⬜'}</td>          
             <td>${item.preco ? item.preco : '🚫'}</td>          
             <td>${item.fornecedor ? item.fornecedor : '🚫'}</td>          
-            <td>${item.referencia ? item.referencia : '🚫'}</td>          
             <td>${item.acao ? item.acao : '🚫'}</td>          
             <td>${item.contato ? item.contato : '🚫'}</td>          
             <td>${item.obsVendedor ? item.obsVendedor : '🚫'}</td>
