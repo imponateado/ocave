@@ -31,12 +31,14 @@ function allSalesPerson()
     return $salesPersonList;
 }
 
-function getSalesBySalesPerson($salesPerson)
+function getSalesBySalesPerson($salesPerson, $startDate, $endDate)
 {
     require '../functions/makeSqlConnectionToOwn.php';
-    $sql = "SELECT * FROM historicoVendas WHERE TRIM(UPPER(vendedor)) = ?";
+    $sql = "SELECT * FROM historicoVendas
+            WHERE TRIM(UPPER(vendedor)) = ?
+            AND data BETWEEN ? AND ?";
     $stmt = $OwnConn->prepare($sql);
-    $stmt->bind_param("s", $salesPerson);
+    $stmt->bind_param("sss", $salesPerson, $startDate, $endDate);
     $stmt->execute();
     $result = $stmt->get_result();
     $salesData = [];
@@ -50,9 +52,16 @@ function getSalesBySalesPerson($salesPerson)
     return ['salesCount' => $salesCount, 'salesDetails' => $salesData];
 }
 
-$startDate = $_GET['$startDate'];
-$endDate = $_GET['$endDate'];
+date_default_timezone_set('America/Sao_Paulo');
+
+$startDate = $_GET['startDate'];
+$endDate = $_GET['endDate'];
 $ligacoesDia = $_GET['ligacoesDia'];
+
+if (!$startDate || !$endDate || strtotime($startDate) === false || strtotime($endDate) === false) {
+    die(json_encode(['error' => 'Invalid date format']));
+}
+
 $businessDays = getBusinessDays($startDate, $endDate);
 $resultadoLigacoesDia = $businessDays * $ligacoesDia;
 $salesPersons = allSalesPerson();
@@ -64,7 +73,7 @@ $response = [
 ];
 
 foreach ($salesPersons as $salesPerson) {
-    $salesInfo = getSalesBySalesPerson($salesPerson);
+    $salesInfo = getSalesBySalesPerson($salesPerson, $startDate, $endDate);
     $response['vendasPorVendedor'][] = [
         'vendedor' => $salesPerson,
         'quantidadeVendas' => $salesInfo['salesCount'],

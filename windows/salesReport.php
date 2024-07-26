@@ -72,7 +72,7 @@ require '../functions/head.php';
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="inputGroup-sizing-default">${item.vendedor}</span>
 								</div>
-								<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="${item.quantidadeVendas}">
+								<input type="text" class="form-control ${item.quantidadeVendas > ligacoesDia ? 'btn-success' : 'btn-danger'}" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="${item.quantidadeVendas}">
 						`;
 					});
 					newContent += `</div>`;
