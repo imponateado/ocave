@@ -37,10 +37,9 @@ require '../functions/head.php';
 			const startDate = document.getElementById('startDate').value;
 			const endDate = document.getElementById('endDate').value;
 			const vendedor = document.getElementById('vendedor').value;
-			const rotas = document.getElementById('rotas').value;
-			const ligacoesDia = document.getElementById('ligacoesDia').value;
+			const rota = document.getElementById('rotas').value;
 
-			let url = `${baseUrl}/ocave/backend/filterSalesReport.php?startDate=${startDate}&endDate=${endDate}&vendedor=${vendedor}&rotas=${rotas}&ligacoesDia=${ligacoesDia}`;
+			let url = `${baseUrl}/ocave/backend/filterSalesReport.php?startDate=${startDate}&endDate=${endDate}&vendedor=${vendedor}&rota=${rota}`;
 
 			fetch(url)
 				.then(res => {
@@ -49,84 +48,46 @@ require '../functions/head.php';
 					}
 					return res.json();
 				})
-				.then(dados => {
-					document.getElementById('placeContent').innerHTML = '<i class="fa fa-spinner" aria-hidden="true"></i>';
-					let newContent = `
-					<div class="input-group mb-3 p-1">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-default">Dias úteis</span>
-						</div>
-						<input type="text" class="form-control" readonly aria-label="Default" aria-describedby="inputGroup-sizing-default" id="diasUteis">
+				.then(data => {
+					console.log(data);
+					let newcontent = '<table><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não lucrativo</th><th scope="col">Necessário visita representante</th><th scope="col">Cliente não atendeu</th><th scope="col"></th></tr></thead><tbody>';
 
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="inputGroup-sizing-default">Número total de ligações previstas</span>
-						</div>
-						<input type="text" class="form-control" readonly aria-label="Default" aria-describedby="inputGroup-sizing-default" id="ligacoesPrevistas">
-					</div>
-					`;
-					console.log(dados);
-
-					newContent += `<div class="input-group mb-3">`;
-					dados.vendasPorVendedor.forEach(item => {
-						newContent += `
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">${item.vendedor}</span>
-								</div>
-								<input type="text" class="form-control ${item.quantidadeVendas > ligacoesDia ? 'btn-success' : 'btn-danger'}" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="${item.quantidadeVendas}">
+					data.forEach(element => {
+						newcontent += `
+							<tr>
+								<td scope="row">${element.codigo}</td>
+								<td>${element.data}</td>
+								<td>${element.vendedor}</td>
+								<td>${element.contato}</td>
+								<td>${element.preco}</td>
+								<td>${element.fornecedor}</td>
+								<td>${element.acao}</td>
+								<td>${element.fantasma}</td>
+								<td>${element.representante}</td>
+								<td>${element.clienteNaoAtendeu}</td>
+							</tr>
+							<tr>
+								<td>Obs Cliente:</td>
+								<td>${element.obsCliente}</td>
+								<td>Obs Vendedor:</td>
+								<td>${element.obsVendedor}</td>
+							</tr>
 						`;
 					});
-					newContent += `</div>`;
+					
+					newcontent += '</tbody></table>';
 
-					newContent += `
-						<table class="table rounded">
-							<thead class="thead-dark">
-								<th scope="col">Código do cliente</th>
-								<th scope="col">Data da ligação</th>
-								<th scope="col">Vendedor</th>
-								<th scope="col">Contato</th>
-								<th scope="col">Preços</th>
-								<th scope="col">Fornecedor</th>
-								<th scope="col">Ação</th>
-								<th scope="col">Cliente improdutivo</th>
-								<th scope="col">Visita representante necessário</th>
-								<th scope="col">Cliente não atendeu</th>
-							</thead>
-							<tbody>
-						`;
-
-					dados.vendasPorVendedor.forEach(item => {
-						newContent += `
-						<tr>
-							<td scope="row">${item.detalhesVendas[0].codigo}</td>
-							<td>${item.detalhesVendas[0].data}</td>
-							<td>${item.vendedor}</td>
-							<td>${item.detalhesVendas[0].contato}</td>
-							<td>${item.detalhesVendas[0].preco}</td>
-							<td>${item.detalhesVendas[0].fornecedor}</td>
-							<td>${item.detalhesVendas[0].acao}</td>
-							<td>${item.detalhesVendas[0].fantasma ? '⬜' : '🟩'}</td>
-							<td>${item.detalhesVendas[0].representante ? '🟥' : '⬜'}</td>
-							<td>${item.detalhesVendas[0].clienteNaoAtendeu ? '⬜' : '🟩'}</td>
-						</tr>
-						<tr>
-							<td>Observação do cliente:</td>
-							<td>${item.detalhesVendas[0].obsCliente}</td>
-							<td>Observação do vendedor:</td>
-							<td>${item.detalhesVendas[0].obsVendedor}</td>
-						</tr>
-							`;
-					});
-
-					newContent += `</tbody></table>`;
-					document.getElementById('placeContent').innerHTML = newContent;
-					document.getElementById('diasUteis').value = dados.diasUteis;
-					document.getElementById('ligacoesPrevistas').value = dados.ligacoesPrevistas;
+					document.getElementById('placeContent').innerHTML = newcontent;
 				})
 				.catch(err => {
-					window.alert("Algo deu errado pressione F12 e clique em console para ver qual o problema!");
+					window.alert("Algo deu errado!\nOU\nNão existem linhas na pesquisa que fizeste!");
 					console.error(err);
 				});
 		}
+
+		window.onload = function () {
+			getSalesReport();
+		};
 	</script>
 </body>
 

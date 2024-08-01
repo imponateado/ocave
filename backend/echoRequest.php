@@ -1,3 +1,5 @@
 <?php
-    print_r($_GET);
+    echo date('Y-m-d', strtotime('Monday this week'));
+    echo '<br>';
+    echo date('Y-m-d', strtotime('Friday this week'));
 ?>
