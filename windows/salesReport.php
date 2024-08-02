@@ -33,6 +33,21 @@ require '../functions/head.php';
 
 		<?php require_once '../functions/getRotaListHTMLscript.php' ?>
 
+		function getBusinessDays(start, end) {
+			var result = 0;
+
+			var currentDate = start;
+			while (currentDate <= endDate) {
+				var weekdays = currentDate.getDay();
+				if(weekdays != 0 && weekdays != 6) {
+					result++;
+				}
+
+				currentDate.setDate(currentDate.getDate()+1);
+			}
+			return result;
+		}
+
 		function getSalesReport() {
 			const startDate = document.getElementById('startDate').value;
 			const endDate = document.getElementById('endDate').value;
@@ -50,7 +65,12 @@ require '../functions/head.php';
 				})
 				.then(data => {
 					console.log(data);
-					let newcontent = '<table><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não lucrativo</th><th scope="col">Necessário visita representante</th><th scope="col">Cliente não atendeu</th><th scope="col"></th></tr></thead><tbody>';
+
+					let businessDays = (startDate && endDate != null) ? getBusinessDays(startDate, endDate) : 0;
+
+					let newcontent = `<p class="border rounded p-3 m-3">Total de ligações: ${data.length}<br>Dias úteis: ${businessDays}</p>`;
+					let totalLigacoes = 0;
+					newcontent += '<table><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não lucrativo</th><th scope="col">Necessário visita representante</th><th scope="col">Cliente não atendeu</th><th scope="col"></th></tr></thead><tbody>';
 
 					data.forEach(element => {
 						newcontent += `
@@ -74,9 +94,8 @@ require '../functions/head.php';
 							</tr>
 						`;
 					});
-					
-					newcontent += '</tbody></table>';
 
+					newcontent += '</tbody></table>';
 					document.getElementById('placeContent').innerHTML = newcontent;
 				})
 				.catch(err => {
