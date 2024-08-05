@@ -36,8 +36,9 @@ require '../functions/head.php';
 		function getBusinessDays(start, end) {
 			var result = 0;
 
-			var currentDate = start;
-			while (currentDate <= endDate) {
+			var currentDate = new Date(start);
+			var end = new Date(end);
+			while (currentDate.getTime() <= end.getTime()) {
 				var weekdays = currentDate.getDay();
 				if(weekdays != 0 && weekdays != 6) {
 					result++;
@@ -70,7 +71,7 @@ require '../functions/head.php';
 
 					let newcontent = `<p class="border rounded p-3 m-3">Total de ligações: ${data.length}<br>Dias úteis: ${businessDays}</p>`;
 					let totalLigacoes = 0;
-					newcontent += '<table><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não lucrativo</th><th scope="col">Necessário visita representante</th><th scope="col">Cliente não atendeu</th><th scope="col"></th></tr></thead><tbody>';
+					newcontent += '<table class="table border rounded"><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não lucrativo</th><th scope="col">Necessário visita representante</th><th scope="col">Cliente não atendeu</th><th scope="col"></th></tr></thead><tbody>';
 
 					data.forEach(element => {
 						newcontent += `
