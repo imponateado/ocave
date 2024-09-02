@@ -1,4 +1,4 @@
-**Endpoint**: `/path/to/script.php`
+**Endpoint**: `{{urlBase}}/filterSalesReport.php`
 
 **Método**: `GET`
 
