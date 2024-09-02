@@ -1,5 +1,3 @@
-# Documentação da API
-
 **Endpoint**: `{{baseUrl}}/filterSalesReport.php`
 
 **Método**: `GET`
