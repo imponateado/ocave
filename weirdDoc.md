@@ -24,5 +24,22 @@ fetch('/path/to/script.php?startDate=2024-01-01&endDate=2024-12-31&vendedor=John
 
 ## Resposta
 Content-Type: application/json
+
 Corpo: Um array de objetos representando dados de vendas e rotas.
 
+## Exemplo de resposta
+[
+  {
+    "data": "2024-01-01",
+    "vendedor": "JohnDoe",
+    "IDROTA": 1,
+    "otherField": "value"
+  },
+  ...
+]
+
+## Códigos de Status HTTP
+
+200 OK: Requisição bem-sucedida. Os dados são retornados no corpo da resposta.
+
+500 Internal Server Error: Ocorreu um erro no servidor. A requisição não pôde ser processada.
