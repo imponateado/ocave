@@ -1,6 +1,6 @@
 # Documentação da API
 
-**Endpoint**: `baseurl/filterSalesReport.php`
+**Endpoint**: `{{baseUrl}}/filterSalesReport.php`
 
 **Método**: `GET`
 
