@@ -3,7 +3,7 @@
 **Método**: `GET`
 
 **Descrição**:  
-Obtém e retorna dados filtrados de vendas e rotas no formato JSON.
+Retorna um JSON com os dados filtrados de histórico de ligações feito pelas vendas.
 
 ## Parâmetros de Consulta
 
