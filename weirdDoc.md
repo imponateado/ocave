@@ -1,4 +1,4 @@
-**Endpoint**: `{{urlBase}}/filterSalesReport.php`
+**Endpoint**: `{{urlBase}}/ocave/backend/filterSalesReport.php`
 
 **Método**: `GET`
 
