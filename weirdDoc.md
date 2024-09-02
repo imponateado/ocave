@@ -1,4 +1,9 @@
-**Endpoint**: `{{baseUrl}}/filterSalesReport.php`
+Claro! Aqui está a documentação da API em formato Markdown:
+
+```markdown
+# Documentação da API
+
+**Endpoint**: `/path/to/script.php`
 
 **Método**: `GET`
 
@@ -20,26 +25,40 @@ fetch('/path/to/script.php?startDate=2024-01-01&endDate=2024-12-31&vendedor=John
   .then(data => {
     console.log(data); // Use esses dados para atualizar a UI
   });
+```
 
+## Resposta
 
-# Documentação da API
+- **Content-Type**: `application/json`
+- **Corpo**: Um array de objetos representando dados de vendas e rotas.
 
-**Endpoint**: `/path/to/script.php`
+### Exemplo de Resposta
 
-**Método**: `GET`
+```json
+[
+  {
+    "data": "2024-01-01",
+    "vendedor": "JohnDoe",
+    "IDROTA": 1,
+    "otherField": "value"
+  },
+  ...
+]
+```
 
-**Descrição**:  
-Obtém e retorna informações detalhadas sobre um cliente com base no código fornecido, no formato JSON.
+## Códigos de Status HTTP
 
-## Parâmetros de Consulta
+- **200 OK**: Requisição bem-sucedida. Os dados são retornados no corpo da resposta.
+- **500 Internal Server Error**: Ocorreu um erro no servidor. A requisição não pôde ser processada.
 
-- `codigo` (obrigatório): Código do cliente para buscar informações. 
+## Tratamento de Erros
 
-## Exemplo de Requisição
+- Lide com os códigos de status padrão 200 (sucesso) e 500 (erro do servidor).
+- Verifique problemas de rede e trate exceções em seu código.
 
-```javascript
-fetch('/path/to/script.php?codigo=123')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // Use esses dados para atualizar a UI
-  });
+## Considerações de Performance
+
+- Utilize paginação ou cache para grandes conjuntos de dados.
+```
+
+Você pode usar este Markdown para documentar sua API de forma clara e organizada.
