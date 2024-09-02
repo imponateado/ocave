@@ -20,3 +20,26 @@ fetch('/path/to/script.php?startDate=2024-01-01&endDate=2024-12-31&vendedor=John
   .then(data => {
     console.log(data); // Use esses dados para atualizar a UI
   });
+
+
+# Documentação da API
+
+**Endpoint**: `/path/to/script.php`
+
+**Método**: `GET`
+
+**Descrição**:  
+Obtém e retorna informações detalhadas sobre um cliente com base no código fornecido, no formato JSON.
+
+## Parâmetros de Consulta
+
+- `codigo` (obrigatório): Código do cliente para buscar informações. 
+
+## Exemplo de Requisição
+
+```javascript
+fetch('/path/to/script.php?codigo=123')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // Use esses dados para atualizar a UI
+  });
