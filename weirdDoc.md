@@ -1,5 +1,3 @@
-Claro! Aqui está a documentação da API em formato Markdown:
-
 ```markdown
 # Documentação da API
 
@@ -60,5 +58,3 @@ fetch('/path/to/script.php?startDate=2024-01-01&endDate=2024-12-31&vendedor=John
 
 - Utilize paginação ou cache para grandes conjuntos de dados.
 ```
-
-Você pode usar este Markdown para documentar sua API de forma clara e organizada.
