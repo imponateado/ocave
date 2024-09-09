@@ -20,17 +20,9 @@ require '../functions/head.php';
 		</div>
 	</div>
 
-	<?php
-	require '../functions/scripts.php';
-	?>
+	<?php require '../functions/scripts.php'; ?>
 
 	<script>
-
-		let baseUrl = window.location.protocol + '//' + window.location.hostname;
-		if (window.location.port) {
-			baseUrl += ':' + window.location.port;
-		}
-
 		<?php require_once '../functions/getRotaListHTMLscript.php' ?>
 
 		function getBusinessDays(start, end) {
@@ -40,11 +32,11 @@ require '../functions/head.php';
 			var end = new Date(end);
 			while (currentDate.getTime() <= end.getTime()) {
 				var weekdays = currentDate.getDay();
-				if(weekdays != 0 && weekdays != 6) {
+				if (weekdays != 0 && weekdays != 6) {
 					result++;
 				}
 
-				currentDate.setDate(currentDate.getDate()+1);
+				currentDate.setDate(currentDate.getDate() + 1);
 			}
 			return result;
 		}
@@ -66,14 +58,27 @@ require '../functions/head.php';
 				})
 				.then(data => {
 					console.log(data);
-
 					let businessDays = (startDate && endDate != null) ? getBusinessDays(startDate, endDate) : 0;
 
 					let newcontent = `<p class="border rounded p-3 m-3">Total de ligações: ${data.length}<br>Dias úteis: ${businessDays}</p>`;
 					let totalLigacoes = 0;
-					newcontent += '<table class="table border rounded"><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não lucrativo</th><th scope="col">Necessário visita representante</th><th scope="col">Cliente não atendeu</th><th scope="col"></th></tr></thead><tbody>';
 
-					data.forEach(element => {
+					newcontent += '<div class="input-group mb-3 p-3 m-3">';
+
+					data[0].forEach(element => {
+						newcontent += `
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-default">${element.vendedor}</span>
+							</div>
+								<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" readonly>
+						`;
+					});
+
+					newcontent += '</div>';
+
+					newcontent += '<table class="table border"><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não lucrativo</th><th scope="col">Necessário visita representante</th><th scope="col">Cliente não atendeu</th><th scope="col"></th></tr></thead><tbody>';
+
+					data[1].forEach(element => {
 						newcontent += `
 							<tr>
 								<td scope="row">${element.codigo}</td>
@@ -83,9 +88,9 @@ require '../functions/head.php';
 								<td>${element.preco}</td>
 								<td>${element.fornecedor}</td>
 								<td>${element.acao}</td>
-								<td>${element.fantasma}</td>
-								<td>${element.representante}</td>
-								<td>${element.clienteNaoAtendeu}</td>
+								<td>${element.fantasma ? '⬜' : '🟩'}</td>
+								<td>${element.representante ? '🟥' : '⬜'}</td>
+								<td>${element.clienteNaoAtendeu ? '🟥' : '⬜'}</td>
 							</tr>
 							<tr>
 								<td>Obs Cliente:</td>
@@ -104,10 +109,6 @@ require '../functions/head.php';
 					console.error(err);
 				});
 		}
-
-		window.onload = function () {
-			getSalesReport();
-		};
 	</script>
 </body>
 

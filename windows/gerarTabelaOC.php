@@ -16,30 +16,20 @@
             <div id="contentHistory"></div>
         </div>
     </div>
+    
+    <?php require '../functions/scripts.php'; ?>
 
     <script>
         function onButtonClick() {
             const startDate = document.getElementById('startDate').value;
             const endDate = document.getElementById('endDate').value;
             const rota = document.getElementById('rotas').value;
-
-            let baseUrl = window.location.protocol + '//' + window.location.hostname;
-            if (window.location.port) {
-                baseUrl += ':' + window.location.port;
-            }
-            let url = ``;
         }
 
         window.onload = function () {
-            let baseUrl = window.location.protocol + '//' + window.location.hostname;
-            if (window.location.port) {
-                baseUrl += ':' + window.location.port;
-            }
-
             <?php require '../functions/getRotaListHTMLscript.php'; ?>
         }
     </script>
-    <?php require '../functions/scripts.php'; ?>
 </body>
 
 </html>

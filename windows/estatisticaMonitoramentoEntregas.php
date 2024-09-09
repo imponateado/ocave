@@ -92,12 +92,10 @@ require '../functions/head.php';
 		</div>
 	</div>
 
+    <?php require '../functions/scripts.php'; ?>
+
     <script>
         window.onload = function () {
-            let baseUrl = window.location.protocol + '//' + window.location.hostname;
-            if (window.location.port) {
-            baseUrl += ':' + window.location.port;
-            }
             let url = `${baseUrl}/ocave/backend/getDetectedProblems.php`
             fetch(url)
             .then(response => response.json())
@@ -142,10 +140,6 @@ require '../functions/head.php';
             });
         }
     </script>
-
-	<?php
-	require '../functions/scripts.php';
-	?>
 </body>
 
 </html>

@@ -16,6 +16,8 @@
         </div>
     </div>
 
+    <?php require '../functions/scripts.php'; ?>
+
     <script>
         function onButtonClick() {
             document.getElementById('responseContent').innerHTML = '<div class="loader"></div>';
@@ -25,10 +27,6 @@
             const endDate = document.getElementById('endDate').value;
             const vendedor = document.getElementById('vendedor').value;
 
-            let baseUrl = window.location.protocol + '//' + window.location.hostname;
-            if (window.location.port) {
-                baseUrl += ':' + window.location.port;
-            }
             let url = `${baseUrl}/ocave/backend/getMonitoramentoVendas.php?codCliente=${codCliente}&startDate=${startDate}&endDate=${endDate}&vendedor=${vendedor}`;
 
             fetch(url)
@@ -79,7 +77,6 @@
         window.onload(onButtonClick());
 
     </script>
-    <?php require '../functions/scripts.php'; ?>
 </body>
 
 </html>

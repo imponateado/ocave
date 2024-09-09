@@ -22,11 +22,8 @@
   </div>
 
   <?php require '../functions/scripts.php'; ?>
+
   <script>
-    let baseUrl = window.location.protocol + '//' + window.location.hostname;
-    if (window.location.port) {
-      baseUrl += ':' + window.location.port;
-    }
 
     function formatarString(questEntr) {
       let comEspacos = questEntr.replace(/([A-Z])/g, ' $1');

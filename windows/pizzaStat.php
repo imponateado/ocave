@@ -15,9 +15,7 @@ require '../functions/head.php';
 		</div>
 	</div>
 
-	<?php
-	require '../functions/scripts.php';
-	?>
+	<?php require '../functions/scripts.php'; ?>
 </body>
 
 </html>

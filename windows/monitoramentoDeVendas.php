@@ -119,9 +119,7 @@ require '../functions/head.php';
 		</div>
 	</div>
 
-	<?php
-	require '../functions/scripts.php';
-	?>
+	<?php require '../functions/scripts.php'; ?>
 
 	<script>
 		function insertData() {
@@ -137,10 +135,6 @@ require '../functions/head.php';
 			const contato = document.getElementById('contato').value;
 			const obsVendedor = document.getElementById('obsVendedor').value;
 
-			let baseUrl = window.location.protocol + '//' + window.location.hostname;
-				if (window.location.port) {
-					baseUrl += ':' + window.location.port;
-			}
 			let url = `${baseUrl}/ocave/backend/putFormVenda.php?codigo=${clientCode}&vendedor=${vendedor}&clienteNaoAtendeu=${clienteNaoAtendeu}&fantasma=${fantasma}&representante=${representante}&preco=${preco}&fornecedor=${fornecedor}&acao=${acao}&obsCliente=${obsCliente}&contato=${contato}&obsVendedor=${obsVendedor}`;
 			fetch(url)
 			.then(response => {

@@ -73,6 +73,8 @@
     </div>
 	</div>
 
+  <?php require '../functions/scripts.php';	?>
+
   <script>
     function insertData() {
       const ordemCarregamento = document.getElementById('ordemCarregamento').value;
@@ -88,10 +90,7 @@
       const alerta = document.getElementById('alerta').checked; //alerta agora significa "Muito insatisfeito"
       const observacao = document.getElementById('observacao').value;
 
-      let baseUrl = window.location.protocol + '//' + window.location.hostname;
-      if (window.location.port) {
-        baseUrl += ':' + window.location.port;
-      }
+
       let url = `${baseUrl}/ocave/backend/insertDataDB.php?ordemCarregamento=${ordemCarregamento}&nomeContato=${nomeContato}&ok=${ok}&semContato=${semContato}&questionarioEntregas=${questionarioEntregas}&alerta=${alerta}&observacao=${observacao}`;
 
       fetch(url)
@@ -112,8 +111,6 @@
       });
     }
   </script>
-
-	<?php require '../functions/scripts.php';	?>
 </body>
 
 </html>

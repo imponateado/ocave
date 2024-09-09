@@ -13,7 +13,7 @@ JOIN rota_cliente ON historicoVendas.codigo = rota_cliente.IDCLIENTE";
 $params = [];
 $conditions = [];
 
-if ($startDate != null and $startDate != null) {
+if ($startDate != null && $endDate != null) {
     $conditions[] = "`data` BETWEEN ? AND ?";
     $params[] = $startDate;
     $params[] = $endDate;
@@ -25,12 +25,12 @@ if ($startDate != null and $startDate != null) {
     $params[] = $endDate;
 }
 
-if ($vendedor != null or $vendedor != '') {
+if ($vendedor != null && $vendedor != '') {
     $conditions[] = 'vendedor = ?';
     $params[] = $vendedor;
 }
 
-if ($rota != null or $rota != '') {
+if ($rota != null && $rota != '') {
     $conditions[] = 'IDROTA = ?';
     $params[] = $rota;
 }
@@ -56,8 +56,22 @@ while ($Row = $result->fetch_assoc()) {
 }
 
 $stmt->close();
-$OwnConn->close();
+
+$OwnSQL = "SELECT DISTINCT vendedor FROM historicoVendas";
+$stmt = $OwnConn->prepare($OwnSQL);
+$stmt->execute();
+$listResult = $stmt->get_result();
+
+$listSalesPersons = [];
+
+while ($listrow = $listResult->fetch_assoc()) {
+    $listSalesPersons[] = $listrow['vendedor'];
+}
+
+$stmt->close();
+
+$contentToBeSent = [$listSalesPersons, $OwnRows];
 
 header('Content-Type: application/json');
-echo json_encode($OwnRows);
+echo json_encode($contentToBeSent);
 ?>

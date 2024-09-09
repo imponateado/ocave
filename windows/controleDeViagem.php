@@ -335,6 +335,9 @@
             </div>
 			<!-- End page content -->
         </div>
+
+		<?php require '../functions/scripts.php'; ?>
+		
 		<script>
 			function putFormRepresentante() {
 				
@@ -361,10 +364,6 @@
 					}
 				});
 
-				let baseUrl = window.location.protocol + '//' + window.location.hostname;
-				if (window.location.port) {
-					baseUrl += ':' + window.location.port;
-				}
 				const url = `${baseUrl}/ocave/backend/putFormRepresentante.php`;
 				const options = {
 					method: 'POST',
@@ -384,13 +383,10 @@
 				.then(data => {
 					window.alert(data);
 				})
-				.catch(error => {
-					window.alert(data);
+				.catch(err => {
+					window.alert(err);
 				});
 			}
 		</script>
-
-
-        <?php require '../functions/scripts.php'; ?>
     </body>
 </html>

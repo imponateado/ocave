@@ -17,14 +17,10 @@
             <div id="responseContent"></div>
         </div>
     </div>
+    
+    <?php require '../functions/scripts.php'; ?>
 
     <script>
-
-        let baseUrl = window.location.protocol + '//' + window.location.hostname;
-        if (window.location.port) {
-            baseUrl += ':' + window.location.port;
-        }
-
         <?php require '../functions/getRotaListHTMLscript.php' ?>
 
         function onButtonClick() {
@@ -32,7 +28,7 @@
 
             const startDate = document.getElementById('startDate').value;
             const endDate = document.getElementById('endDate').value;
-            const rota = document.getElementById('rota').value;
+            const rota = document.getElementById('rotas').value;
             const codCliente = document.getElementById('codCliente').value;
             const cidade = document.getElementById('cidade').value;
 
@@ -93,8 +89,6 @@
                 })
         }
     </script>
-
-    <?php require '../functions/scripts.php'; ?>
 </body>
 
 </html>

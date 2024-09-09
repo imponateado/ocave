@@ -26,7 +26,6 @@
                 </div>
             </div>
         </div>
-        
 
         <?php require '../functions/scripts.php' ?>
 

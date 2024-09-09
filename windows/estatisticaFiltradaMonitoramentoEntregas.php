@@ -143,14 +143,12 @@ require '../functions/head.php';
 		</div>
 	</div>
 
+	<?php require '../functions/scripts.php'; ?>
+
 	<script>
 		window.onload = function() {
 
 			//busca estatística geral e põe nos placeholders
-			let baseUrl = window.location.protocol + '//' + window.location.hostname;
-			if (window.location.port) {
-				baseUrl += ':' + window.location.port;
-			}
 			var url = `${baseUrl}/ocave/backend/getDetectedProblems.php`
 			fetch(url)
 				.then(response => response.json())
@@ -233,10 +231,6 @@ require '../functions/head.php';
 
 			//faz uma requisição http pro backend buscando a lista completa de ligações
 
-			let baseUrl = window.location.protocol + '//' + window.location.hostname;
-			if (window.location.port) {
-				baseUrl += ':' + window.location.port;
-			}
 			var url = `${baseUrl}/ocave/backend/getFilteredCount.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}`;
 			fetch(url)
 			.then(response => {
@@ -268,10 +262,6 @@ require '../functions/head.php';
 
 		}
 	</script>
-
-	<?php
-	require '../functions/scripts.php';
-	?>
 </body>
 
 </html>
