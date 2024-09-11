@@ -10,7 +10,7 @@
         <option value="vao">Vão</option>
         <option value="medidas">Medidas</option>
         <option value="arranhados">Arranhados</option>
-        <option value="furo">Furo</option>
+        <option value="furacao">Furação</option>
         <option value="naoCarregado">Não carregado</option>
         <option value="trincado">Trincado</option>
         <option value="quebrado">Quebrado</option>
