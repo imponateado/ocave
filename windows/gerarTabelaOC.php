@@ -14,6 +14,8 @@
 
             <button class="btn btn-success" onclick="onButtonClick()">Consultar</button>
             <div id="contentHistory"></div>
+
+            <div>Opa... ainda Gerar tabelas a partir de ordens de carga ainda não estão implementadas! (provavelmente descartado) </div>
         </div>
     </div>
     

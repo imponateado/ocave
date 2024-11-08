@@ -33,7 +33,7 @@
             const cidade = document.getElementById('cidade').value;
 
 
-            let url = `${baseUrl}/ocave/backend/getControlesDeViagem.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}&codCliente=${codCliente}&cidade=${cidade}`;
+            let url = `${baseUrl}/viagem/get?startDate=${startDate}&endDate=${endDate}&rota=${rota}&idcliente=${codCliente}&cidade=${cidade}`;
 
             fetch(url)
                 .then(res => {

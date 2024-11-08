@@ -1,4 +1,4 @@
-var url = `${baseUrl}/ocave/backend/getRotaList.php`;
+var url = `${baseUrl}/rota/get`;
 fetch(url)
 .then(res => {
   if (!res.ok) {

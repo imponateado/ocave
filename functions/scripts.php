@@ -6,7 +6,7 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 <script>
-    let baseUrl = 'https://w37yp8-8080.csb.app'; //window.location.protocol + '//' + window.location.hostname;
+    let baseUrl = 'http://localhost:1235'; //window.location.protocol + '//' + window.location.hostname;
     // if (window.location.port) {
     //     baseUrl += ':' + window.location.port;
     // }
