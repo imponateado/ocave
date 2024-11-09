@@ -139,13 +139,13 @@ require '../functions/head.php';
 			fetch(url)
 			.then(response => {
 				if(response.ok) {
-					return response.text();
+					return response.json();
 				} else {
 					throw new Error('Erro na solicitação: ' + response.status);
 				}
 			})
 			.then(data => {
-				window.alert(data);
+				window.alert(data.msg);
 				getClientCode();
 				document.getElementById('clienteNaoAtendeu').checked = false;
 				document.getElementById('fantasma').checked = false;

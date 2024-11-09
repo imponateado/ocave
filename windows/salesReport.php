@@ -47,7 +47,7 @@ require '../functions/head.php';
 			const vendedor = document.getElementById('vendedor').value;
 			const rota = document.getElementById('rotas').value;
 
-			let url = `${baseUrl}/ocave/backend/filterSalesReport.php?startDate=${startDate}&endDate=${endDate}&vendedor=${vendedor}&rota=${rota}`;
+			let url = `${baseUrl}/prospeccao/get?startDate=${startDate}&endDate=${endDate}&vendedor=${vendedor}&rota=${rota}`;
 
 			fetch(url)
 				.then(res => {
