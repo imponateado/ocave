@@ -101,12 +101,8 @@
       </div>
     </div>
   </div>
+  <?php require '../functions/scripts.php'; ?>
   <script>
-
-    let baseUrl = window.location.protocol + '//' + window.location.hostname;
-    if (window.location.port) {
-      baseUrl += ':' + window.location.port;
-    }
 
     let copyText = document.getElementById('copyText');
 
@@ -146,9 +142,9 @@
 
       insertNewRegister();
 
-      
-      
-      if(copyText.value !== '') {
+
+
+      if (copyText.value !== '') {
         copyText.value += '\n\n';
         copyText.value += textToCopy.toUpperCase();
       } else {
@@ -191,7 +187,7 @@
       const observacao = document.getElementById('observacao').value;
       const isItPaid = document.querySelector('input[name="isItPaid"]:checked')?.value;
 
-      let url = `${baseUrl}/ocave/backend/insertReposicao.php`;
+      let url = `${baseUrl}/reposicao/insert`;
 
       const data = {
         repoOptions,
@@ -217,9 +213,9 @@
         },
         body: JSON.stringify(data)
       })
-        .then(res => res.text())
+        .then(res => res.json())
         .then(data => {
-          window.alert(data);
+          window.alert(data.msg);
         })
         .catch(err => {
           window.alert("Um erro foi encontrado, pressione F12 e clique em console para ver o erro");
@@ -237,7 +233,6 @@
       clearFields(false);
     }
   </script>
-  <?php require '../functions/scripts.php'; ?>
   </div>
 </body>
 

@@ -62,7 +62,7 @@
             const issue = document.getElementById('issue').value;
             const padraoEngenharia = document.querySelector('input[name="certBy"]:checked')?.value;
 
-            let url = `${baseUrl}/ocave/backend/getReposicoes.php`;
+            let url = `${baseUrl}/reposicao/get`;
 
             const dados = {
                 startDate, endDate, codRep, typeOptions, configurationOptions, thicknessOptions, colourOptions, sector, issue, padraoEngenharia

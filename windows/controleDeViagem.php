@@ -378,10 +378,10 @@
 					if(!response.ok) {
 						throw new Error('Erro ao enviar os dados');
 					}
-					return response.text();
+					return response.json();
 				})
 				.then(data => {
-					window.alert(data);
+					window.alert(data.msg);
 				})
 				.catch(err => {
 					window.alert(err);

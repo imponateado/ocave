@@ -81,7 +81,7 @@ require '../functions/head.php';
 					data[1].forEach(element => {
 						newcontent += `
 							<tr>
-								<td scope="row">${element.codigo}</td>
+								<td scope="row">${element.idcliente}</td>
 								<td>${element.data}</td>
 								<td>${element.vendedor}</td>
 								<td>${element.contato}</td>
