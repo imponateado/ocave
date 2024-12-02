@@ -214,9 +214,9 @@
         },
         body: JSON.stringify(data)
       })
-        .then(res => res.text())
+        .then(res => res.json())
         .then(data => {
-          window.alert(data);
+          window.alert(data.msg);
         })
         .catch(err => {
           window.alert("Um erro foi encontrado, pressione F12 e clique em console para ver o erro");
