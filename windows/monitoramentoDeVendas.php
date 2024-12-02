@@ -135,7 +135,7 @@ require '../functions/head.php';
 			const contato = document.getElementById('contato').value;
 			const obsVendedor = document.getElementById('obsVendedor').value;
 
-			let url = `${baseUrl}/prospeccao/insert?codigo=${clientCode}&vendedor=${vendedor}&clienteNaoAtendeu=${clienteNaoAtendeu}&fantasma=${fantasma}&representante=${representante}&preco=${preco}&fornecedor=${fornecedor}&acao=${acao}&obsCliente=${obsCliente}&contato=${contato}&obsVendedor=${obsVendedor}`;
+			let url = `${baseUrl}/prospeccao/insert?idcliente=${clientCode}&vendedor=${vendedor}&clienteNaoAtendeu=${clienteNaoAtendeu}&fantasma=${fantasma}&representante=${representante}&preco=${preco}&fornecedor=${fornecedor}&acao=${acao}&obsCliente=${obsCliente}&contato=${contato}&obsVendedor=${obsVendedor}`;
 			fetch(url)
 			.then(response => {
 				if(response.ok) {

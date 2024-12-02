@@ -45,7 +45,7 @@
       });
 
     if (document.getElementById('historicoVendaLigacao')) {
-      let url = `${baseUrl}/prospeccao/getCliente?idcliente=${clientCode}`;
+      let url = `${baseUrl}/prospeccao/get?idcliente=${clientCode}`;
       fetch(url)
         .then(response => response.json())
         .then(data => {

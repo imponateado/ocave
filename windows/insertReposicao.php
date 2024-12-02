@@ -101,8 +101,9 @@
       </div>
     </div>
   </div>
-  <?php require '../functions/scripts.php'; ?>
   <script>
+
+    let baseUrl = window.location.protocol + '//' + window.location.hostname + ':1235';
 
     let copyText = document.getElementById('copyText');
 
@@ -142,9 +143,9 @@
 
       insertNewRegister();
 
-
-
-      if (copyText.value !== '') {
+      
+      
+      if(copyText.value !== '') {
         copyText.value += '\n\n';
         copyText.value += textToCopy.toUpperCase();
       } else {
@@ -213,9 +214,9 @@
         },
         body: JSON.stringify(data)
       })
-        .then(res => res.json())
+        .then(res => res.text())
         .then(data => {
-          window.alert(data.msg);
+          window.alert(data);
         })
         .catch(err => {
           window.alert("Um erro foi encontrado, pressione F12 e clique em console para ver o erro");
@@ -233,6 +234,7 @@
       clearFields(false);
     }
   </script>
+  <?php require '../functions/scripts.php'; ?>
   </div>
 </body>
 
