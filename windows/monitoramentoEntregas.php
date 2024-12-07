@@ -91,17 +91,17 @@
       const observacao = document.getElementById('observacao').value;
 
 
-      let url = `${baseUrl}/ocave/backend/insertDataDB.php?ordemCarregamento=${ordemCarregamento}&nomeContato=${nomeContato}&ok=${ok}&semContato=${semContato}&questionarioEntregas=${questionarioEntregas}&alerta=${alerta}&observacao=${observacao}`;
+      let url = `${baseUrl}/entrega/insert?ordemCarregamento=${ordemCarregamento}&nomeContato=${nomeContato}&ok=${ok}&semContato=${semContato}&questionarioEntregas=${questionarioEntregas}&alerta=${alerta}&observacao=${observacao}`;
 
       fetch(url)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.text();
+        return response.json();
       })
       .then(data => {
-        window.alert(data);
+        window.alert(data.msg);
         document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
         document.getElementById('clientCode').focus();
         window.scrollTo(0, 0);

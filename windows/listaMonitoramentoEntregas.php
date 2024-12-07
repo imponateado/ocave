@@ -43,7 +43,7 @@
       const rota = document.getElementById('rotas').value;
       const cliente = document.getElementById('cliente').value;
 
-      let url = `${baseUrl}/ocave/backend/getFilteredDeliveredClientList.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}&cliente=${cliente}`;
+      let url = `${baseUrl}/entrega/get?startDate=${startDate}&endDate=${endDate}&rota=${rota}&cliente=${cliente}`;
       fetch(url)
         .then(response => {
           if (!response.ok) {
