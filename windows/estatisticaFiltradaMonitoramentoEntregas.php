@@ -149,7 +149,7 @@ require '../functions/head.php';
 		window.onload = function() {
 
 			//busca estatística geral e põe nos placeholders
-			var url = `${baseUrl}/ocave/backend/getDetectedProblems.php`
+			var url = `${baseUrl}/entrega/stats`
 			fetch(url)
 				.then(response => response.json())
 				.then(data => {
@@ -231,7 +231,7 @@ require '../functions/head.php';
 
 			//faz uma requisição http pro backend buscando a lista completa de ligações
 
-			var url = `${baseUrl}/ocave/backend/getFilteredCount.php?startDate=${startDate}&endDate=${endDate}&rota=${rota}`;
+			var url = `${baseUrl}/entrega/stats?startDate=${startDate}&endDate=${endDate}&rota=${rota}`;
 			fetch(url)
 			.then(response => {
 				if (!response.ok) {

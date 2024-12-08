@@ -89,9 +89,9 @@
 
       const alerta = document.getElementById('alerta').checked; //alerta agora significa "Muito insatisfeito"
       const observacao = document.getElementById('observacao').value;
+      const cliente = document.getElementById('clientCode').value;
 
-
-      let url = `${baseUrl}/entrega/insert?ordemCarregamento=${ordemCarregamento}&nomeContato=${nomeContato}&ok=${ok}&semContato=${semContato}&questionarioEntregas=${questionarioEntregas}&alerta=${alerta}&observacao=${observacao}`;
+      let url = `${baseUrl}/entrega/insert?ordemCarregamento=${ordemCarregamento}&nomeContato=${nomeContato}&ok=${ok}&semContato=${semContato}&questionarioEntregas=${questionarioEntregas}&alerta=${alerta}&observacao=${observacao}&cliente=${cliente}`;
 
       fetch(url)
       .then(response => {

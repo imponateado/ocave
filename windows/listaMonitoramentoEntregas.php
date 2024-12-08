@@ -53,11 +53,11 @@
         })
         .then(data => {
           let tabela = '<table class="table">';
-          tabela += ' <thead class = "thead-dark"><tr><th>OC</th><th>Cod</th><th>Rota</th><th>Nome</th><th>semContato</th><th>Questionario De Entregas</th><th>Cliente insatisfeito</th><th>Observacao</th><th>data</th></tr></thead><tbody>';
+          tabela += ' <thead class = "thead-dark"><tr><th>OC</th><th>Cod</th><th>Rota</th><th>Nome</th><th>Sem Contato</th><th>Questionario De Entregas</th><th>Cliente insatisfeito</th><th>Observação</th><th>Data</th></tr></thead><tbody>';
           Object.values(data).forEach(item => {
             tabela += `<tr>
             <td>${item.ordemCarregamento}</td>
-              <td>${item.IDCLIENTE}</td>
+              <td>${item.cliente}</td>
               <td>${item.IDROTA}</td>
               <td>${item.nomeContato}</td>
               <td>${item.semContato === 'false' ? "⬜" : "🟩"}</td>
