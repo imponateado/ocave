@@ -230,7 +230,7 @@
       copyText.select();
       document.execCommand('copy');
       alert('Texto copiado! Cole no próximo site.');
-      window.open(`https://192.168.20.10:20085/Cadastros/CadSugestaoCliente.aspx?idPedido=${numPed}`, '_blank');
+      window.open(`https://localhost/Cadastros/CadSugestaoCliente.aspx?idPedido=${numPed}`, '_blank');
       clearFields(false);
     }
   </script>

@@ -7,7 +7,7 @@
             <?php require 'functions/navbar.php'; ?>
             <!-- Page Content  -->
             <div id="content" class="p-4 p-md-5 pt-5">
-                Página em construção
+                Era pra ter uma página aqui, a empresa nunca precisou! :/
             </div>
         </div>
 

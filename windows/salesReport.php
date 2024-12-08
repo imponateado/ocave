@@ -65,7 +65,7 @@ require '../functions/head.php';
 
 					newcontent += '<div class="input-group mb-3 p-3 m-3">';
 
-					data[0].forEach(element => {
+					data.forEach(element => {
 						newcontent += `
 							<div class="input-group-prepend">
 								<span class="input-group-text" id="inputGroup-sizing-default">${element.vendedor}</span>
@@ -78,7 +78,7 @@ require '../functions/head.php';
 
 					newcontent += '<table class="table border"><thead class="thead-dark"><tr><th scope="col">Código do cliente</th><th scope="col">Data</th><th scope="col">Vendedor</th><th scope="col">Contato</th><th scope="col">Preços</th><th scope="col">Fornecedor</th><th scope="col">Ação</th><th scope="col">Cliente não lucrativo</th><th scope="col">Necessário visita representante</th><th scope="col">Cliente não atendeu</th><th scope="col"></th></tr></thead><tbody>';
 
-					data[1].forEach(element => {
+					data.forEach(element => {
 						newcontent += `
 							<tr>
 								<td scope="row">${element.codigo}</td>
